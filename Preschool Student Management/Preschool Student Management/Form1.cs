@@ -24,7 +24,7 @@ namespace Preschool_Student_Management
 
             //SELECT DATA
 
-            List<string> response = Utils.selectQuery("SELECT * FROM student", "full_name");
+            List<string> response = Utils.selectQuery("SELECT * FROM student", "age");
             foreach (var i in response)
             {
                 textBoxTest.Text += i.ToString();
