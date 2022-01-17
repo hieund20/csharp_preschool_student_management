@@ -58,3 +58,26 @@ Tất nhiên method lấy dữ liệu phải để ở cuối câu query
 	// Lấy student có id là 1
 	Student.Query.WithClassroom.Find("1");
 ```
+
+### Thêm, cập nhật và xoá
+
+	cái này đơn giản vcl
+```cs
+	var user = new User();
+	user.SetAttribute("name", "dinhdjj");
+	user.SetAttribute("username", "dinhdjj");
+	user.SetAttribute("email", "dinhdjj@gmail.com");
+	user.SetAttribute("password", "dinhdjj");
+	user.SetAttribute("role", "1");
+	user.SetAttribute("created_at", "2022-01-17 19:59:00");
+
+	// Tạo nè;
+	user.Save();
+
+	user.SetAttribute("password", "222222");
+	// Vẫn là nó nhưng là cập nhật
+	user.Save();
+
+	// Vẫn là nó nhưng là xoá
+	user.Delete();
+```

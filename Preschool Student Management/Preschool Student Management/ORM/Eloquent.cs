@@ -236,6 +236,7 @@ namespace Preschool_Student_Management.ORM
 				this.SaveAsInsert();
 			}
 
+			this.changedAttributeNames = new List<string>();
 			this.exists = true;
 		}
 
@@ -263,7 +264,9 @@ namespace Preschool_Student_Management.ORM
 			}
 			columns += ")";
 			values += ")";
+
 			Utils.insertQuery("INSERT INTO `" + this.TableName +"` " + columns + " VALUES " + values);
+			this.attributes = Eloquent<T>.Query.OrderBy("id", "DESC").First().attributes;
 		}
 
 		/// <summary>
@@ -292,6 +295,11 @@ namespace Preschool_Student_Management.ORM
 			}
 			query += " WHERE `" + this.KeyName + "` = \"" + this.GetAttribute(this.KeyName) + "\"";
 			Utils.insertQuery(query);
+		}
+
+		public void Delete() {
+			var query = "DELETE FROM `" + this.TableName + "` WHERE `" + this.KeyName + "` = \"" + this.GetAttribute(this.KeyName) +"\"";
+			Utils.deleteQuery(query);
 		}
 	}
 }
