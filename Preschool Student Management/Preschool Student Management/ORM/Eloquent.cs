@@ -2,29 +2,64 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Linq;
 
 namespace Preschool_Student_Management.ORM
 {
 	abstract class Eloquent<T> where T : Eloquent<T>, new()
 	{
-		protected List<Condition> conditions = new List<Condition> { };
-		protected List<Func<List<T>, List<T>>> selectedQueues = new List<Func<List<T>, List<T>>> { };
+		/// <summary>
+		/// Used to build query
+		/// </summary>
+		public static T Query = new T();
 
 		/// <summary>
-		/// Initialize a model form result select query
+		/// Contain all attibutes of the model
 		/// </summary>
-		abstract protected T Initialize(MySqlDataReader reader);
+		protected Dictionary<string, string> attributes  = new Dictionary<string, string>();
+
+		/// <summary>
+		/// Determine whether the model is exists in database
+		/// </summary>
+		protected bool exists = false;
+
+		/// <summary>
+		/// Get a given attribute of the model
+		/// </summary>
+		public string GetAttribute(string field) {
+			return this.attributes[field];
+		}
+
+		/// <summary>
+		/// Set a given attribute of the model
+		/// </summary>
+		public void SetAttribute(string field, string value)
+		{
+			this.attributes[field] = value;
+		}
+
+		/// <summary>
+		/// Contain all where conditions of query builder
+		/// </summary>
+		protected List<Condition> conditions = new List<Condition> { };
+
+		/// <summary>
+		/// Contains all Function will called when select
+		/// </summary>
+		protected List<Func<List<T>, List<T>>> selectedQueues = new List<Func<List<T>, List<T>>> { };
 
 		/// <summary>
 		/// Return a table name
 		/// </summary>
-		abstract public string TableName();
+		abstract public string TableName {
+			get;
+		}
 
 		/// <summary>
 		/// Return primary key name of table
 		/// </summary>
-		public string KeyName() {
-			return "id";
+		public string KeyName {
+			get { return "id"; }
 		}
 
 
@@ -92,7 +127,7 @@ namespace Preschool_Student_Management.ORM
 		/// Get result of query
 		/// </summary>
 		public string ToSql() {
-			var query = "SELECT * FROM `" + this.TableName() + "`";
+			var query = "SELECT * FROM `" + this.TableName + "`";
 			var isFirst = true;
 			foreach (Condition condition in this.conditions)
 			{
@@ -136,7 +171,12 @@ namespace Preschool_Student_Management.ORM
 				MySqlDataReader reader = command.ExecuteReader();
 				while (reader.Read())
 				{
-					models.Add(this.Initialize(reader));
+					var model = new T();
+					for (int lp = 0; lp < reader.FieldCount; lp++)
+					{
+						model.SetAttribute(reader.GetName(lp), reader.GetValue(lp).ToString());
+					}
+					models.Add(model);
 				}
 				connection.Close();
 			}
@@ -169,6 +209,13 @@ namespace Preschool_Student_Management.ORM
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Add where by primary key name and get first result
+		/// </summary>
+		public T Find(string value) {
+			return this.Where(this.KeyName, "=", value).First();
 		}
 	}
 }
