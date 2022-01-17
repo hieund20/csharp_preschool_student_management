@@ -8,6 +8,7 @@ namespace Preschool_Student_Management.ORM
 	abstract class Eloquent<T> where T : Eloquent<T>, new()
 	{
 		protected List<Condition> conditions = new List<Condition> { };
+		protected List<Func<List<T>, List<T>>> selectedQueues = new List<Func<List<T>, List<T>>> { };
 
 		/// <summary>
 		/// Initialize a model form result select query
@@ -33,6 +34,22 @@ namespace Preschool_Student_Management.ORM
 		public Eloquent<T> Where(string field, string compare , string value , string concatenation = "AND")
 		{
 			Condition condition = new Condition(field,compare, value, concatenation);
+			this.conditions.Add(condition);
+
+			return this;
+		}
+
+		public Eloquent<T> WhereIn(string field, List<string> values, string concatenation = "AND")
+		{
+			Condition condition = new Condition(field, values, concatenation);
+			this.conditions.Add(condition);
+
+			return this;
+		}
+
+		public Eloquent<T> WhereNotIn(string field, List<string> values, string concatenation = "AND")
+		{
+			Condition condition = new Condition(field, values, concatenation, true);
 			this.conditions.Add(condition);
 
 			return this;
@@ -126,6 +143,10 @@ namespace Preschool_Student_Management.ORM
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error when execute select query: " + ex);
+			}
+
+			foreach (var callable in this.selectedQueues) {
+				models = callable(models);
 			}
 
 			return models;

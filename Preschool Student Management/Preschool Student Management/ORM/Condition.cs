@@ -8,29 +8,58 @@ namespace Preschool_Student_Management.ORM
 {
 	class Condition
 	{
-		protected string field;
-		protected string comparation = "=";
-		protected string value;
-		protected string concatenation = "AND";
+		protected string condition;
+		protected string concatenation;
 
 		public Condition(string field,string comparation, string value, string concatenation = "AND") { 
-			this.field = field;
-			this.comparation = comparation;
-			this.value = value;
 			this.concatenation = concatenation;
+
+			this.condition = "`" + field + "` " + comparation + " \"" + value + "\"";
+		}
+
+		public Condition(string field, List<string> values, string concatenation = "AND", bool negative = false)
+		{
+			this.concatenation = concatenation;
+
+			if (values.Count == 0) {
+				if (negative)
+				{
+					this.condition = "\"1\" = \"1\"";
+				}
+				else	
+				{
+					this.condition = "\"1\" = \"2\"";
+				}
+				return;
+			}
+
+			this.condition = "`" + field + "` " + (negative ? "NOT" : "") + " IN (";
+
+			var isFist = true;
+			foreach (var value in values) {
+				if (isFist)
+				{
+					this.condition += "\"" + value + "\"";
+					isFist = false;
+				}
+				else
+				{
+					this.condition += ", \"" + value + "\"";
+				}
+			}
+
+			this.condition += ")";
 		}
 
 		/// <summary>
 		/// Convert to string
 		/// </summary>
 		public string toString(bool isFirst = false ){
-			var result = "`"+this.field + "` " + this.comparation + " \"" + this.value + "\"";
-
 			if(isFirst){
-				return "WHERE " + result;
+				return "WHERE " + this.condition;
 			}
 
-			return this.concatenation + " " + result;
+			return this.concatenation + " " + this.condition;
 		}
 	}
 }
