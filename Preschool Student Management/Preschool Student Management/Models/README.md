@@ -81,3 +81,27 @@ Tất nhiên method lấy dữ liệu phải để ở cuối câu query
 	// Vẫn là nó nhưng là xoá
 	user.Delete();
 ```
+
+
+### Trường hợp sử dụng thực tế
+
+```cs
+	using Preschool_Student_Management.Models;
+
+	User userQueryBuilder = User.Query.Where("id", ">", "1");
+	List<User> users = userQueryBuilder.Get();
+
+	foreach(User user in users){
+		Console.Writeline(user.GetAttribute("name"));
+	}
+
+	Classroom classroom = Classroom.Query.Where("id", "=", "2").First();
+	// Cũng như vậy nhưng viết ngắn hơn
+	Classroom classroom = Classroom.Query.Find("2");
+
+	Console.Writeline(classroom.GetAttribute("code"));
+
+	classroom.SetAttribute("code", "new code");
+
+	classroom.Save();
+```
