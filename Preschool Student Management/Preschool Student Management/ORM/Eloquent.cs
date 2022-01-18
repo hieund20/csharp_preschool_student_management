@@ -39,7 +39,11 @@ namespace Preschool_Student_Management.ORM
 		public void SetAttribute(string field, string value)
 		{
 			this.attributes[field] = value;
-			this.changedAttributeNames.Add(field);
+
+			if (this.changedAttributeNames.Find((f) => f == field) == null)
+			{
+				this.changedAttributeNames.Add(field);
+			}
 		}
 
 		/// <summary>
@@ -159,10 +163,19 @@ namespace Preschool_Student_Management.ORM
 		/// <summary>
 		/// Get result of query
 		/// </summary>
-		public List<T> Get()
+		public List<T> Get(string raw = "")
 		{
 			List<T> models = new List<T>();
-			var query = this.ToSql();
+
+			var query = "";
+			if (raw == "")
+			{
+				query = this.ToSql();
+			}
+			else
+			{
+				query = raw;
+			}
 
 			var connection = DBUtils.getDBConnection();
 			connection.Open();
@@ -266,7 +279,7 @@ namespace Preschool_Student_Management.ORM
 			values += ")";
 
 			Utils.insertQuery("INSERT INTO `" + this.TableName +"` " + columns + " VALUES " + values);
-			this.attributes = Eloquent<T>.Query.OrderBy("id", "DESC").First().attributes;
+			this.attributes = Eloquent<T>.Query.OrderBy(this.KeyName, "DESC").First().attributes;
 		}
 
 		/// <summary>
