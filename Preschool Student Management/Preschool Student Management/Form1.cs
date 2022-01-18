@@ -100,6 +100,7 @@ namespace Preschool_Student_Management
         {
             int newId = int.Parse(Student.Query.OrderBy("id", "DESC").First().GetAttribute("id"));
             newId++;
+            //Update on UI
             ListViewItem newItem = listViewStudent.Items.Add(newId.ToString());
             newItem.SubItems.Add(textBoxFirstName.Text + " " + textBoxLastName.Text);
             newItem.SubItems.Add(dateTimePickerDOB.Value.ToShortDateString());
@@ -108,6 +109,7 @@ namespace Preschool_Student_Management
             newItem.SubItems.Add(textBoxPhoneNumber.Text);
             newItem.SubItems.Add(textBoxAddress.Text);
 
+            //Update under database
             var student = new Student();
             student.SetAttribute("first_name", textBoxFirstName.Text);
             student.SetAttribute("last_name", textBoxLastName.Text);
@@ -119,8 +121,8 @@ namespace Preschool_Student_Management
             student.SetAttribute("classroom_id", textBoxClassID.Text);
             student.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             student.SetAttribute("user_id", "1");
-
             student.Save();
+
             resetStudentTextboxList();
         }
 
@@ -131,13 +133,26 @@ namespace Preschool_Student_Management
 
         private void listViewStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Have 1 error, when click twice to another row
             if (listViewStudent.SelectedItems.Count > 0) {
-                textBoxFirstName.Text = listViewStudent.SelectedItems[0].SubItems[1].Text;
-                dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
-                textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
-                textBoxParrentFirstName.Text = listViewStudent.SelectedItems[0].SubItems[4].Text;
-                textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
-                textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
+                try
+                {
+                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
+                    Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
+
+                    textBoxFirstName.Text = studentSelected.GetAttribute("first_name");
+                    textBoxLastName.Text = studentSelected.GetAttribute("last_name");
+                    dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
+                    textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
+                    textBoxParrentFirstName.Text = studentSelected.GetAttribute("parent_first_name");
+                    textBoxParrentLastName.Text = studentSelected.GetAttribute("parent_last_name");
+                    textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
+                    textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }              
             }
         }
 
@@ -145,12 +160,36 @@ namespace Preschool_Student_Management
         {
             if (listViewStudent.SelectedItems.Count > 0)
             {
-                listViewStudent.SelectedItems[0].SubItems[1].Text = textBoxFirstName.Text;
-                listViewStudent.SelectedItems[0].SubItems[2].Text = dateTimePickerDOB.Value.ToShortDateString();
-                listViewStudent.SelectedItems[0].SubItems[3].Text = textBoxClassID.Text;
-                listViewStudent.SelectedItems[0].SubItems[4].Text = textBoxParrentFirstName.Text;
-                listViewStudent.SelectedItems[0].SubItems[5].Text = textBoxPhoneNumber.Text;
-                listViewStudent.SelectedItems[0].SubItems[6].Text = textBoxAddress.Text;
+                try
+                {
+                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
+                    Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
+
+                    //Update on UI
+                    listViewStudent.SelectedItems[0].SubItems[1].Text = textBoxFirstName.Text + " " + textBoxLastName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[2].Text = dateTimePickerDOB.Value.ToShortDateString();
+                    listViewStudent.SelectedItems[0].SubItems[3].Text = textBoxClassID.Text;
+                    listViewStudent.SelectedItems[0].SubItems[4].Text = textBoxParrentFirstName.Text + " " + textBoxParrentLastName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[5].Text = textBoxPhoneNumber.Text;
+                    listViewStudent.SelectedItems[0].SubItems[6].Text = textBoxAddress.Text;
+
+                    //Update under database
+                    studentSelected.SetAttribute("first_name", textBoxFirstName.Text);
+                    studentSelected.SetAttribute("last_name", textBoxLastName.Text);
+                    studentSelected.SetAttribute("birth_date", dateTimePickerDOB.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                    studentSelected.SetAttribute("parent_first_name", textBoxParrentFirstName.Text);
+                    studentSelected.SetAttribute("parent_last_name", textBoxParrentLastName.Text);
+                    studentSelected.SetAttribute("parent_phone_number", textBoxPhoneNumber.Text);
+                    studentSelected.SetAttribute("address", textBoxAddress.Text);
+                    studentSelected.SetAttribute("classroom_id", textBoxClassID.Text);
+                    studentSelected.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    studentSelected.SetAttribute("user_id", "1");
+                    studentSelected.Save();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }             
             }
             else
             {
@@ -162,11 +201,14 @@ namespace Preschool_Student_Management
         {
             if (listViewStudent.SelectedItems.Count > 0)
             {
-                //listViewStudent.Items.Remove(listViewStudent.SelectedItems[0]);
-                resetStudentTextboxList();
-
+                //Update under database
                 string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
-                Student.Query.Where(Student.Query.KeyName, "=", idSelected).Delete();
+                Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
+                studentSelected.Delete();
+
+                //Update on UI
+                listViewStudent.Items.Remove(listViewStudent.SelectedItems[0]);
+                resetStudentTextboxList();
             }
             else
             {
