@@ -39,7 +39,11 @@ namespace Preschool_Student_Management.ORM
 		public void SetAttribute(string field, string value)
 		{
 			this.attributes[field] = value;
-			this.changedAttributeNames.Add(field);
+
+			if (this.changedAttributeNames.Find((f) => f == field) == null)
+			{
+				this.changedAttributeNames.Add(field);
+			}
 		}
 
 		/// <summary>
@@ -266,7 +270,7 @@ namespace Preschool_Student_Management.ORM
 			values += ")";
 
 			Utils.insertQuery("INSERT INTO `" + this.TableName +"` " + columns + " VALUES " + values);
-			this.attributes = Eloquent<T>.Query.OrderBy("id", "DESC").First().attributes;
+			this.attributes = Eloquent<T>.Query.OrderBy(this.KeyName, "DESC").First().attributes;
 		}
 
 		/// <summary>
