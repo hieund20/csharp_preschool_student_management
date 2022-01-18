@@ -163,10 +163,19 @@ namespace Preschool_Student_Management.ORM
 		/// <summary>
 		/// Get result of query
 		/// </summary>
-		public List<T> Get()
+		public List<T> Get(string raw = "")
 		{
 			List<T> models = new List<T>();
-			var query = this.ToSql();
+
+			var query = "";
+			if (raw == "")
+			{
+				query = this.ToSql();
+			}
+			else
+			{
+				query = raw;
+			}
 
 			var connection = DBUtils.getDBConnection();
 			connection.Open();
