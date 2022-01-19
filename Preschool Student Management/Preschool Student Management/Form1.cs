@@ -76,7 +76,8 @@ namespace Preschool_Student_Management
             {
                 ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
                 newItem.SubItems.Add(student.GetAttribute("first_name").ToString() + " " + student.GetAttribute("last_name").ToString());
-                newItem.SubItems.Add(student.GetAttribute("birth_date").ToString());
+                string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
+                newItem.SubItems.Add(birthDateFormat);
                 newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
                 newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString() +" " + student.GetAttribute("parent_last_name").ToString());
                 newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
@@ -98,32 +99,45 @@ namespace Preschool_Student_Management
 
         private void buttonAddStudent_Click_1(object sender, EventArgs e)
         {
-            int newId = int.Parse(Student.Query.OrderBy("id", "DESC").First().GetAttribute("id"));
-            newId++;
-            //Update on UI
-            ListViewItem newItem = listViewStudent.Items.Add(newId.ToString());
-            newItem.SubItems.Add(textBoxFirstName.Text + " " + textBoxLastName.Text);
-            newItem.SubItems.Add(dateTimePickerDOB.Value.ToShortDateString());
-            newItem.SubItems.Add(textBoxClassID.Text);
-            newItem.SubItems.Add(textBoxParrentFirstName.Text + " " + textBoxParrentLastName.Text);
-            newItem.SubItems.Add(textBoxPhoneNumber.Text);
-            newItem.SubItems.Add(textBoxAddress.Text);
+            if (textBoxFirstName.Text == "" || 
+                textBoxLastName.Text == "" || 
+                textBoxClassID.Text == "" || 
+                textBoxParrentFirstName.Text == "" || 
+                textBoxParrentLastName.Text == "" ||
+                textBoxPhoneNumber.Text == "" ||
+                textBoxAddress.Text == "")
+            {
+                MessageBox.Show("Bạn phải nhập đủ các trường dữ liệu !", "Thông báo");
+            }
+            else
+            {
+                int newId = int.Parse(Student.Query.OrderBy("id", "DESC").First().GetAttribute("id"));
+                newId++;
+                //Update on UI
+                ListViewItem newItem = listViewStudent.Items.Add(newId.ToString());
+                newItem.SubItems.Add(textBoxFirstName.Text + " " + textBoxLastName.Text);
+                newItem.SubItems.Add(dateTimePickerDOB.Value.ToShortDateString());
+                newItem.SubItems.Add(textBoxClassID.Text);
+                newItem.SubItems.Add(textBoxParrentFirstName.Text + " " + textBoxParrentLastName.Text);
+                newItem.SubItems.Add(textBoxPhoneNumber.Text);
+                newItem.SubItems.Add(textBoxAddress.Text);
 
-            //Update under database
-            var student = new Student();
-            student.SetAttribute("first_name", textBoxFirstName.Text);
-            student.SetAttribute("last_name", textBoxLastName.Text);
-            student.SetAttribute("birth_date", dateTimePickerDOB.Value.ToString("yyyy-MM-dd HH:mm:ss"));
-            student.SetAttribute("parent_first_name", textBoxParrentFirstName.Text);
-            student.SetAttribute("parent_last_name", textBoxParrentLastName.Text);
-            student.SetAttribute("parent_phone_number", textBoxPhoneNumber.Text);
-            student.SetAttribute("address", textBoxAddress.Text);
-            student.SetAttribute("classroom_id", textBoxClassID.Text);
-            student.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            student.SetAttribute("user_id", "1");
-            student.Save();
+                //Update under database
+                var student = new Student();
+                student.SetAttribute("first_name", textBoxFirstName.Text);
+                student.SetAttribute("last_name", textBoxLastName.Text);
+                student.SetAttribute("birth_date", dateTimePickerDOB.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                student.SetAttribute("parent_first_name", textBoxParrentFirstName.Text);
+                student.SetAttribute("parent_last_name", textBoxParrentLastName.Text);
+                student.SetAttribute("parent_phone_number", textBoxPhoneNumber.Text);
+                student.SetAttribute("address", textBoxAddress.Text);
+                student.SetAttribute("classroom_id", textBoxClassID.Text);
+                student.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                student.SetAttribute("user_id", "1");
+                student.Save();
 
-            resetStudentTextboxList();
+                resetStudentTextboxList();
+            }
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
@@ -133,13 +147,23 @@ namespace Preschool_Student_Management
 
         private void listViewStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Have 1 error, when click twice to another row
-            if (listViewStudent.SelectedItems.Count > 0) {
+            if (listViewStudent.SelectedItems.Count <= 0) {
+                return;
+            }
+            else
+            {
                 try
                 {
                     string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
                     Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
 
+                    if (studentSelected == null) {
+                        dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
+                        textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
+                        textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
+                        textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
+                        return;
+                    }
                     textBoxFirstName.Text = studentSelected.GetAttribute("first_name");
                     textBoxLastName.Text = studentSelected.GetAttribute("last_name");
                     dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
@@ -149,10 +173,10 @@ namespace Preschool_Student_Management
                     textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
                     textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex);
-                }              
+                }
             }
         }
 
@@ -226,6 +250,34 @@ namespace Preschool_Student_Management
         private void textBoxFullname_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string searchQuery = textBoxSearch.Text;
+                //Only can search by firs name, need to search full name
+                MessageBox.Show(searchQuery);
+
+                //Only search 1 time, when search another name and return search it won't show 
+                var studentQueryBuilder = Student.Query.Where("first_name", "=", searchQuery);
+                List<Student> studentListResult = studentQueryBuilder.Get();
+                MessageBox.Show(studentListResult.Count.ToString());
+                listViewStudent.Items.Clear();
+                foreach (var student in studentListResult)
+                {
+                    ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("first_name").ToString() + " " + student.GetAttribute("last_name").ToString());
+                    string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
+                    newItem.SubItems.Add(birthDateFormat);
+                    newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString() + " " + student.GetAttribute("parent_last_name").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                }
+                textBoxSearch.Text = "";
+            }           
         }
     }
 }
