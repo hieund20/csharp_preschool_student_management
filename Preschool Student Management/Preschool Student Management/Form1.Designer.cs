@@ -47,6 +47,10 @@
             this.buttonDeleteStudent = new System.Windows.Forms.Button();
             this.buttonAddStudent = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxParrentLastName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.dateTimePickerDOB = new System.Windows.Forms.DateTimePicker();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
@@ -62,7 +66,7 @@
             this.buttonEditStudent = new System.Windows.Forms.Button();
             this.listViewStudent = new System.Windows.Forms.ListView();
             this.columnStudentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnStudentFullname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnStudentFirstname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHDOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnClassID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnParentName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,10 +79,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabClassPage = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxLastName = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxParrentLastName = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -279,6 +281,8 @@
             // tabStudentPage
             // 
             this.tabStudentPage.BackColor = System.Drawing.Color.White;
+            this.tabStudentPage.Controls.Add(this.label16);
+            this.tabStudentPage.Controls.Add(this.textBoxSearch);
             this.tabStudentPage.Controls.Add(this.buttonDeleteStudent);
             this.tabStudentPage.Controls.Add(this.buttonAddStudent);
             this.tabStudentPage.Controls.Add(this.groupBox1);
@@ -346,6 +350,38 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(157, 79);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 13);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "Tên phụ huynh";
+            // 
+            // textBoxParrentLastName
+            // 
+            this.textBoxParrentLastName.Location = new System.Drawing.Point(160, 97);
+            this.textBoxParrentLastName.Name = "textBoxParrentLastName";
+            this.textBoxParrentLastName.Size = new System.Drawing.Size(116, 20);
+            this.textBoxParrentLastName.TabIndex = 15;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(157, 26);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Tên học sinh";
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Location = new System.Drawing.Point(160, 42);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(116, 20);
+            this.textBoxLastName.TabIndex = 13;
             // 
             // dateTimePickerDOB
             // 
@@ -463,7 +499,7 @@
             // 
             this.listViewStudent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnStudentID,
-            this.columnStudentFullname,
+            this.columnStudentFirstname,
             this.columnHDOB,
             this.columnClassID,
             this.columnParentName,
@@ -484,10 +520,10 @@
             this.columnStudentID.Text = "Mã học sinh";
             this.columnStudentID.Width = 83;
             // 
-            // columnStudentFullname
+            // columnStudentFirstname
             // 
-            this.columnStudentFullname.Text = "Họ và tên";
-            this.columnStudentFullname.Width = 142;
+            this.columnStudentFirstname.Text = "Họ và tên";
+            this.columnStudentFirstname.Width = 142;
             // 
             // columnHDOB
             // 
@@ -587,37 +623,23 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "QUẢN LÝ LỚP HỌC";
             // 
-            // textBoxLastName
+            // textBoxSearch
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(160, 42);
-            this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(116, 20);
-            this.textBoxLastName.TabIndex = 13;
+            this.textBoxSearch.Location = new System.Drawing.Point(185, 240);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(216, 20);
+            this.textBoxSearch.TabIndex = 6;
+            this.textBoxSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyDown);
             // 
-            // label14
+            // label16
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(157, 26);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 13);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Tên học sinh";
-            // 
-            // textBoxParrentLastName
-            // 
-            this.textBoxParrentLastName.Location = new System.Drawing.Point(160, 97);
-            this.textBoxParrentLastName.Name = "textBoxParrentLastName";
-            this.textBoxParrentLastName.Size = new System.Drawing.Size(116, 20);
-            this.textBoxParrentLastName.TabIndex = 15;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(157, 79);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 13);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "Tên phụ huynh";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(23, 243);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(156, 13);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Nhập tên học sinh cần tìm";
             // 
             // Form1
             // 
@@ -680,7 +702,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListView listViewStudent;
         private System.Windows.Forms.ColumnHeader columnStudentID;
-        private System.Windows.Forms.ColumnHeader columnStudentFullname;
+        private System.Windows.Forms.ColumnHeader columnStudentFirstname;
         private System.Windows.Forms.ColumnHeader columnHDOB;
         private System.Windows.Forms.ColumnHeader columnClassID;
         private System.Windows.Forms.ColumnHeader columnParentName;
@@ -706,6 +728,8 @@
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBoxParrentLastName;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Label label16;
     }
 }
 
