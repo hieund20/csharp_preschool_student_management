@@ -25,11 +25,6 @@ namespace Preschool_Student_Management
             tabControl.SizeMode = TabSizeMode.Fixed;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         //DASHBOARD
         private void buttonTabStudent_Click(object sender, EventArgs e)
         {
@@ -51,13 +46,13 @@ namespace Preschool_Student_Management
             tabControl.SelectedTab = tabClassPage;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
             var exitDialog = MessageBox.Show(
-                "Bạn có chắc muốn thoát?", 
-                "Xác nhận thoát ứng dụng" , 
-                MessageBoxButtons.YesNo);
-            if(exitDialog == DialogResult.Yes)
+               "Bạn có chắc muốn thoát?",
+               "Xác nhận thoát ứng dụng",
+               MessageBoxButtons.YesNo);
+            if (exitDialog == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -75,11 +70,13 @@ namespace Preschool_Student_Management
             foreach (var student in studentList)
             {
                 ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
-                newItem.SubItems.Add(student.GetAttribute("first_name").ToString() + " " + student.GetAttribute("last_name").ToString());
+                newItem.SubItems.Add(student.GetAttribute("first_name").ToString());
+                newItem.SubItems.Add(student.GetAttribute("last_name").ToString());
                 string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
                 newItem.SubItems.Add(birthDateFormat);
                 newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
-                newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString() +" " + student.GetAttribute("parent_last_name").ToString());
+                newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString());
+                newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
                 newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
                 newItem.SubItems.Add(student.GetAttribute("address").ToString());
             }
@@ -115,10 +112,12 @@ namespace Preschool_Student_Management
                 newId++;
                 //Update on UI
                 ListViewItem newItem = listViewStudent.Items.Add(newId.ToString());
-                newItem.SubItems.Add(textBoxFirstName.Text + " " + textBoxLastName.Text);
+                newItem.SubItems.Add(textBoxFirstName.Text);
+                newItem.SubItems.Add(textBoxLastName.Text);
                 newItem.SubItems.Add(dateTimePickerDOB.Value.ToShortDateString());
                 newItem.SubItems.Add(textBoxClassID.Text);
-                newItem.SubItems.Add(textBoxParrentFirstName.Text + " " + textBoxParrentLastName.Text);
+                newItem.SubItems.Add(textBoxParrentFirstName.Text);
+                newItem.SubItems.Add(textBoxParrentLastName.Text);
                 newItem.SubItems.Add(textBoxPhoneNumber.Text);
                 newItem.SubItems.Add(textBoxAddress.Text);
 
@@ -140,11 +139,6 @@ namespace Preschool_Student_Management
             }
         }
 
-        private void buttonAddStudent_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listViewStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewStudent.SelectedItems.Count <= 0) {
@@ -154,24 +148,15 @@ namespace Preschool_Student_Management
             {
                 try
                 {
-                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
-                    Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
-
-                    if (studentSelected == null) {
-                        dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
-                        textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
-                        textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
-                        textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
-                        return;
-                    }
-                    textBoxFirstName.Text = studentSelected.GetAttribute("first_name");
-                    textBoxLastName.Text = studentSelected.GetAttribute("last_name");
-                    dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
-                    textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
-                    textBoxParrentFirstName.Text = studentSelected.GetAttribute("parent_first_name");
-                    textBoxParrentLastName.Text = studentSelected.GetAttribute("parent_last_name");
-                    textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
-                    textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
+                    
+                    textBoxFirstName.Text = listViewStudent.SelectedItems[0].SubItems[1].Text;
+                    textBoxLastName.Text = listViewStudent.SelectedItems[0].SubItems[2].Text;
+                    dateTimePickerDOB.Text = listViewStudent.SelectedItems[0].SubItems[3].Text;
+                    textBoxClassID.Text = listViewStudent.SelectedItems[0].SubItems[4].Text;
+                    textBoxParrentFirstName.Text = listViewStudent.SelectedItems[0].SubItems[5].Text;
+                    textBoxParrentLastName.Text = listViewStudent.SelectedItems[0].SubItems[6].Text;
+                    textBoxPhoneNumber.Text = listViewStudent.SelectedItems[0].SubItems[7].Text;
+                    textBoxAddress.Text = listViewStudent.SelectedItems[0].SubItems[8].Text;
                 }
                 catch (Exception ex)
                 {
@@ -190,12 +175,14 @@ namespace Preschool_Student_Management
                     Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
 
                     //Update on UI
-                    listViewStudent.SelectedItems[0].SubItems[1].Text = textBoxFirstName.Text + " " + textBoxLastName.Text;
-                    listViewStudent.SelectedItems[0].SubItems[2].Text = dateTimePickerDOB.Value.ToShortDateString();
-                    listViewStudent.SelectedItems[0].SubItems[3].Text = textBoxClassID.Text;
-                    listViewStudent.SelectedItems[0].SubItems[4].Text = textBoxParrentFirstName.Text + " " + textBoxParrentLastName.Text;
-                    listViewStudent.SelectedItems[0].SubItems[5].Text = textBoxPhoneNumber.Text;
-                    listViewStudent.SelectedItems[0].SubItems[6].Text = textBoxAddress.Text;
+                    listViewStudent.SelectedItems[0].SubItems[1].Text = textBoxFirstName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[2].Text = textBoxLastName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[3].Text = dateTimePickerDOB.Value.ToShortDateString();
+                    listViewStudent.SelectedItems[0].SubItems[4].Text = textBoxClassID.Text;
+                    listViewStudent.SelectedItems[0].SubItems[5].Text = textBoxParrentFirstName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[6].Text = textBoxParrentLastName.Text;
+                    listViewStudent.SelectedItems[0].SubItems[7].Text = textBoxPhoneNumber.Text;
+                    listViewStudent.SelectedItems[0].SubItems[8].Text = textBoxAddress.Text;
 
                     //Update under database
                     studentSelected.SetAttribute("first_name", textBoxFirstName.Text);
@@ -225,31 +212,30 @@ namespace Preschool_Student_Management
         {
             if (listViewStudent.SelectedItems.Count > 0)
             {
-                //Update under database
-                string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
-                Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
-                studentSelected.Delete();
+                var confirmDialog = MessageBox.Show(
+                "Bạn có chắc muốn xóa dòng này?",
+                "Xác nhận xóa thông tin",
+                MessageBoxButtons.YesNo);
+                if (confirmDialog == DialogResult.Yes)
+                {
+                    //Update under database
+                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
+                    Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
+                    studentSelected.Delete();
 
-                //Update on UI
-                listViewStudent.Items.Remove(listViewStudent.SelectedItems[0]);
-                resetStudentTextboxList();
+                    //Update on UI
+                    listViewStudent.Items.Remove(listViewStudent.SelectedItems[0]);
+                    resetStudentTextboxList();
+                }
+                else
+                {
+                    //Do not handle code
+                }           
             }
             else
             {
                 MessageBox.Show("Bạn phải chọn 1 dòng để xóa !", "Thông báo");
             }
-        }
-        //========================//
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            hideTabHeader();
-            loadStudentListToListView();
-        }
-
-        private void textBoxFullname_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
@@ -277,7 +263,16 @@ namespace Preschool_Student_Management
                     newItem.SubItems.Add(student.GetAttribute("address").ToString());
                 }
                 textBoxSearch.Text = "";
-            }           
+            }
         }
+        //========================//
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            hideTabHeader();
+            loadStudentListToListView();
+        }
+
+       
     }
 }
