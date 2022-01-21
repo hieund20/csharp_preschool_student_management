@@ -206,23 +206,14 @@
         UM+ZgMtZB6RXxTum3yLVLq4Kt/NgoJnLLoXhZq7rFDZr5gfnr1MUP8H94RHXtDpfAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="buttonTabVacxin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="buttonTabUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAThJREFUSEvd
-        kzFuwkAQRd1zBU6QA1Ag0SNBS51rUESi4gBcKlVOQS5AQUEk0OTPzh9rnLXXOLhAPOmL2b/fM/ZqqV4P
-        EVlBP5Cj9Yrbj6PN2NQZd4BjvUW4fBz0WkO7ICd6a8aHg4dPUB8nxoeDh/ULnPjWKuf/X6CwSXbutGsf
-        5d+L4JQvhGWsEX420DUZJIUAylEGTKEPqD6iFCJYHsxNma2VcuB2Oww1Gim04xcsIH3bGzSHZqzVWzCW
-        g80E69IRfZkje1rq7c2ST1o5DPiAziNC6YMntNSbmCUXWjkM1I0c2nFAEcZysHe0SCtHxuKA+F9pvQwN
-        sLeEvlOqiXpLxrIvcmh3D4gw2xrmVieMlWG2b8CwI4owWxzAZQ3tUQbcdRmKIPgOnblsAP+uy9ALwm8s
-        n5Wq+gUqCxxwIYfUJQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="buttonTabTimeTable.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAHFJREFUSEvt
-        lUEKwDAIBH1e/v+E9CGtDQMeWmlIlUJxIIeozIIX5RN24PsI49PzOQHab/q2MfmO09HQGlrsox1DR2vQ
-        mN+jA5qrh/oPAqJAa1APA61BPX9FfJdBUwE+aCrAB00F+KC5DUg/OLknMweRA++y2X/csutpAAAAAElF
-        TkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEQSURBVEhL7ZMxTgJRFEUHpaYngcrK0pKwCBviaiRxASb0LoAtQGXrFuysIDRYUmGe5/65RAKD
+        mD+ZxERPcjKf+17en/z5FP/8biKih1NcWq17LtdDg3CNhyirvwlD9LZihtpMai2mbsuHIYtyVvQdKeuX
+        USwc5aMh5azmNmj8iJr9yEKD8OQ1Zd3FHV3H9WHYENs41mSjtbKh205D0zU+4BzfcItj10YoNn7us8tG
+        adAhFAb4nFqOuXHPpPyZqLoAYpIG7kN4h3pT8Y5PeItXeOE29bXwBUXVFVat5fgLwtdUjnjEjuMjqGVv
+        8JHKEZeOKqGefUTnuHdf3kd24TtWmI6OZ71r+lMY1swf7S9RFJ+3vKAKWj67awAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="buttonTabStudent.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

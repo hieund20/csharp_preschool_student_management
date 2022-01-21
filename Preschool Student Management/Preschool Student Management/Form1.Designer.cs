@@ -34,8 +34,7 @@
             this.panelLogoBrand = new System.Windows.Forms.Panel();
             this.buttonExit = new System.Windows.Forms.Button();
             this.buttonTabClass = new System.Windows.Forms.Button();
-            this.buttonTabVacxin = new System.Windows.Forms.Button();
-            this.buttonTabTimeTable = new System.Windows.Forms.Button();
+            this.buttonTabUser = new System.Windows.Forms.Button();
             this.buttonTabStudent = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -77,10 +76,8 @@
             this.columnHeaderPhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
-            this.tabTimePage = new System.Windows.Forms.TabPage();
+            this.tabUser = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabVacxinPage = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabClassPage = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -89,8 +86,7 @@
             this.tabControl.SuspendLayout();
             this.tabStudentPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabTimePage.SuspendLayout();
-            this.tabVacxinPage.SuspendLayout();
+            this.tabUser.SuspendLayout();
             this.tabClassPage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,8 +97,7 @@
             this.panel1.Controls.Add(this.panelLogoBrand);
             this.panel1.Controls.Add(this.buttonExit);
             this.panel1.Controls.Add(this.buttonTabClass);
-            this.panel1.Controls.Add(this.buttonTabVacxin);
-            this.panel1.Controls.Add(this.buttonTabTimeTable);
+            this.panel1.Controls.Add(this.buttonTabUser);
             this.panel1.Controls.Add(this.buttonTabStudent);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -157,7 +152,7 @@
             this.buttonTabClass.ForeColor = System.Drawing.Color.White;
             this.buttonTabClass.Image = ((System.Drawing.Image)(resources.GetObject("buttonTabClass.Image")));
             this.buttonTabClass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonTabClass.Location = new System.Drawing.Point(12, 403);
+            this.buttonTabClass.Location = new System.Drawing.Point(12, 296);
             this.buttonTabClass.Name = "buttonTabClass";
             this.buttonTabClass.Size = new System.Drawing.Size(248, 65);
             this.buttonTabClass.TabIndex = 5;
@@ -165,43 +160,24 @@
             this.buttonTabClass.UseVisualStyleBackColor = false;
             this.buttonTabClass.Click += new System.EventHandler(this.buttonTabClass_Click);
             // 
-            // buttonTabVacxin
+            // buttonTabUser
             // 
-            this.buttonTabVacxin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonTabVacxin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.buttonTabVacxin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonTabVacxin.FlatAppearance.BorderSize = 0;
-            this.buttonTabVacxin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTabVacxin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTabVacxin.ForeColor = System.Drawing.Color.White;
-            this.buttonTabVacxin.Image = ((System.Drawing.Image)(resources.GetObject("buttonTabVacxin.Image")));
-            this.buttonTabVacxin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonTabVacxin.Location = new System.Drawing.Point(12, 332);
-            this.buttonTabVacxin.Name = "buttonTabVacxin";
-            this.buttonTabVacxin.Size = new System.Drawing.Size(248, 65);
-            this.buttonTabVacxin.TabIndex = 4;
-            this.buttonTabVacxin.Text = "QUẢN LÝ TT TIÊM CHỦNG";
-            this.buttonTabVacxin.UseVisualStyleBackColor = false;
-            this.buttonTabVacxin.Click += new System.EventHandler(this.buttonTabVacxin_Click);
-            // 
-            // buttonTabTimeTable
-            // 
-            this.buttonTabTimeTable.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.buttonTabTimeTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.buttonTabTimeTable.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonTabTimeTable.FlatAppearance.BorderSize = 0;
-            this.buttonTabTimeTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTabTimeTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTabTimeTable.ForeColor = System.Drawing.Color.White;
-            this.buttonTabTimeTable.Image = ((System.Drawing.Image)(resources.GetObject("buttonTabTimeTable.Image")));
-            this.buttonTabTimeTable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonTabTimeTable.Location = new System.Drawing.Point(12, 261);
-            this.buttonTabTimeTable.Name = "buttonTabTimeTable";
-            this.buttonTabTimeTable.Size = new System.Drawing.Size(245, 65);
-            this.buttonTabTimeTable.TabIndex = 3;
-            this.buttonTabTimeTable.Text = "QUẢN LÝ THỜI GIAN BIỂU";
-            this.buttonTabTimeTable.UseVisualStyleBackColor = false;
-            this.buttonTabTimeTable.Click += new System.EventHandler(this.buttonTabTimeTable_Click);
+            this.buttonTabUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonTabUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonTabUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonTabUser.FlatAppearance.BorderSize = 0;
+            this.buttonTabUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTabUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTabUser.ForeColor = System.Drawing.Color.White;
+            this.buttonTabUser.Image = ((System.Drawing.Image)(resources.GetObject("buttonTabUser.Image")));
+            this.buttonTabUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonTabUser.Location = new System.Drawing.Point(12, 380);
+            this.buttonTabUser.Name = "buttonTabUser";
+            this.buttonTabUser.Size = new System.Drawing.Size(245, 65);
+            this.buttonTabUser.TabIndex = 3;
+            this.buttonTabUser.Text = "QUẢN LÝ TT NGƯỜI DÙNG";
+            this.buttonTabUser.UseVisualStyleBackColor = false;
+            this.buttonTabUser.Click += new System.EventHandler(this.buttonTabUser_Click);
             // 
             // buttonTabStudent
             // 
@@ -214,7 +190,7 @@
             this.buttonTabStudent.ForeColor = System.Drawing.Color.White;
             this.buttonTabStudent.Image = ((System.Drawing.Image)(resources.GetObject("buttonTabStudent.Image")));
             this.buttonTabStudent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonTabStudent.Location = new System.Drawing.Point(12, 190);
+            this.buttonTabStudent.Location = new System.Drawing.Point(12, 215);
             this.buttonTabStudent.Name = "buttonTabStudent";
             this.buttonTabStudent.Size = new System.Drawing.Size(248, 65);
             this.buttonTabStudent.TabIndex = 2;
@@ -275,9 +251,8 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabStudentPage);
-            this.tabControl.Controls.Add(this.tabTimePage);
-            this.tabControl.Controls.Add(this.tabVacxinPage);
             this.tabControl.Controls.Add(this.tabClassPage);
+            this.tabControl.Controls.Add(this.tabUser);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(269, 74);
             this.tabControl.Name = "tabControl";
@@ -617,16 +592,16 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "QUẢN LÝ HỌC SINH";
             // 
-            // tabTimePage
+            // tabUser
             // 
-            this.tabTimePage.BackColor = System.Drawing.Color.White;
-            this.tabTimePage.Controls.Add(this.label3);
-            this.tabTimePage.Location = new System.Drawing.Point(4, 22);
-            this.tabTimePage.Name = "tabTimePage";
-            this.tabTimePage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTimePage.Size = new System.Drawing.Size(987, 548);
-            this.tabTimePage.TabIndex = 1;
-            this.tabTimePage.Text = "tabPage2";
+            this.tabUser.BackColor = System.Drawing.Color.White;
+            this.tabUser.Controls.Add(this.label3);
+            this.tabUser.Location = new System.Drawing.Point(4, 22);
+            this.tabUser.Name = "tabUser";
+            this.tabUser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUser.Size = new System.Drawing.Size(987, 548);
+            this.tabUser.TabIndex = 1;
+            this.tabUser.Text = "tabPage2";
             // 
             // label3
             // 
@@ -634,30 +609,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(23, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 18);
+            this.label3.Size = new System.Drawing.Size(288, 18);
             this.label3.TabIndex = 0;
-            this.label3.Text = "QUẢN LÝ THỜI GIAN BIỂU";
-            // 
-            // tabVacxinPage
-            // 
-            this.tabVacxinPage.BackColor = System.Drawing.Color.White;
-            this.tabVacxinPage.Controls.Add(this.label4);
-            this.tabVacxinPage.Location = new System.Drawing.Point(4, 22);
-            this.tabVacxinPage.Name = "tabVacxinPage";
-            this.tabVacxinPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVacxinPage.Size = new System.Drawing.Size(987, 548);
-            this.tabVacxinPage.TabIndex = 2;
-            this.tabVacxinPage.Text = "tabPage3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(23, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(285, 18);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "QUẢN LÝ THÔNG TIN TIÊM CHỦNG";
+            this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
             // 
             // tabClassPage
             // 
@@ -705,10 +659,8 @@
             this.tabStudentPage.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabTimePage.ResumeLayout(false);
-            this.tabTimePage.PerformLayout();
-            this.tabVacxinPage.ResumeLayout(false);
-            this.tabVacxinPage.PerformLayout();
+            this.tabUser.ResumeLayout(false);
+            this.tabUser.PerformLayout();
             this.tabClassPage.ResumeLayout(false);
             this.tabClassPage.PerformLayout();
             this.ResumeLayout(false);
@@ -720,19 +672,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonTabClass;
-        private System.Windows.Forms.Button buttonTabVacxin;
-        private System.Windows.Forms.Button buttonTabTimeTable;
+        private System.Windows.Forms.Button buttonTabUser;
         private System.Windows.Forms.Button buttonTabStudent;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabStudentPage;
-        private System.Windows.Forms.TabPage tabTimePage;
-        private System.Windows.Forms.TabPage tabVacxinPage;
+        private System.Windows.Forms.TabPage tabUser;
         private System.Windows.Forms.TabPage tabClassPage;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Panel panelLogoBrand;
