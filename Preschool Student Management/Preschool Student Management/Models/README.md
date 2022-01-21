@@ -43,20 +43,20 @@ Tất nhiên method lấy dữ liệu phải để ở cuối câu query
 
 ```cs
 	// Lấy tất cả học sinh thoả điều kiện `Get()`
-	Student.Query.WithClassroom.Where("first_name", "=" ,"Le Dinh").Get();
+	Student.Query.WithClassroom().Where("first_name", "=" ,"Le Dinh").Get();
 
 	// Lấy cái đầu tiên thoả điều 
-	Student.Query.WithClassroom.Where("first_name", "=" ,"Le Dinh").First();
+	Student.Query.WithClassroom().Where("first_name", "=" ,"Le Dinh").First();
 
 	// Lấy cái cuối tiên thoả điều 
-	Student.Query.WithClassroom.Where("first_name", "=" ,"Le Dinh").OrderBy("id", "DESC").First();
+	Student.Query.WithClassroom().Where("first_name", "=" ,"Le Dinh").OrderBy("id", "DESC").First();
 
 	// Lấy kết quả từ vị trí 2 đến 10
-	Student.Query.WithClassroom.Where("first_name", "=" ,"Le Dinh").OrderBy("id", "DESC").Slice(2, 10);
+	Student.Query.WithClassroom().Where("first_name", "=" ,"Le Dinh").OrderBy("id", "DESC").Slice(2, 10);
 
 	// Lấy cái đầu tiên thoả điều kiện và thêm luân câu lệnh where primary key `id`
 	// Lấy student có id là 1
-	Student.Query.WithClassroom.Find("1");
+	Student.Query.WithClassroom().Find("1");
 ```
 
 ### Thêm, cập nhật và xoá
@@ -85,6 +85,8 @@ Tất nhiên method lấy dữ liệu phải để ở cuối câu query
 
 ### Trường hợp sử dụng thực tế
 
+Để coi 1 cái model có With* (lấy các model quan hệ) có bao nhiêu, và cách sài thì làm ơn mở Model file cs ra xem.
+
 ```cs
 	using Preschool_Student_Management.Models;
 
@@ -104,4 +106,17 @@ Tất nhiên method lấy dữ liệu phải để ở cuối câu query
 	classroom.SetAttribute("code", "new code");
 
 	classroom.Save();
+
+	// Lấy các lớp và lịch của nó từ 0:00 hôm nay dến 7 ngày sau
+	var classrooms = Classroom.Query.WithSchedules(DateTime.Today, DateTime.Today.AddDays(7)).Get();
+
+	foreach (var classroom in classrooms){
+		classroom.Schedules;
+	}
+
+	// Lấy các lớp và lịch gần nhất của nó 
+	var classrooms = Classroom.Query.WithClosestSchedule().Get();
+	foreach (var classroom in classrooms){
+		classroom.ClosestSchedule;
+	}
 ```
