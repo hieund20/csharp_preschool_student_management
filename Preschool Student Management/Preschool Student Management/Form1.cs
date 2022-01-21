@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Preschool_Student_Management.Models;
 
+
 namespace Preschool_Student_Management
 {
     public partial class Form1 : Form
@@ -31,19 +32,14 @@ namespace Preschool_Student_Management
             tabControl.SelectedTab = tabStudentPage;
         }
 
-        private void buttonTabTimeTable_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabTimePage;
-        }
-
-        private void buttonTabVacxin_Click(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = tabVacxinPage;
-        }
-
         private void buttonTabClass_Click(object sender, EventArgs e)
         {
             tabControl.SelectedTab = tabClassPage;
+        }
+
+        private void buttonTabUser_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabUser;
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
@@ -125,7 +121,7 @@ namespace Preschool_Student_Management
                 var student = new Student();
                 student.SetAttribute("first_name", textBoxFirstName.Text);
                 student.SetAttribute("last_name", textBoxLastName.Text);
-                student.SetAttribute("birth_date", dateTimePickerDOB.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                student.SetAttribute("birth_date", dateTimePickerDOB.Value.ToString("yyyy-MM-dd"));
                 student.SetAttribute("parent_first_name", textBoxParrentFirstName.Text);
                 student.SetAttribute("parent_last_name", textBoxParrentLastName.Text);
                 student.SetAttribute("parent_phone_number", textBoxPhoneNumber.Text);
@@ -172,7 +168,7 @@ namespace Preschool_Student_Management
                 try
                 {
                     string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
-                    Student studentSelected = Student.Query.Where("id", "=", idSelected).First();
+                    Student studentSelected = Student.Query.WithClassroom().WithUser().Where("id", "=", idSelected).First();
 
                     //Update on UI
                     listViewStudent.SelectedItems[0].SubItems[1].Text = textBoxFirstName.Text;
@@ -243,22 +239,22 @@ namespace Preschool_Student_Management
             if (e.KeyCode == Keys.Enter)
             {
                 string searchQuery = textBoxSearch.Text;
-                //Only can search by firs name, need to search full name
-                MessageBox.Show(searchQuery);
 
+                //Only can search by firs name, need to search full name
                 //Only search 1 time, when search another name and return search it won't show 
-                var studentQueryBuilder = Student.Query.Where("first_name", "=", searchQuery);
+                var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("first_name", "=", searchQuery);
                 List<Student> studentListResult = studentQueryBuilder.Get();
-                MessageBox.Show(studentListResult.Count.ToString());
                 listViewStudent.Items.Clear();
                 foreach (var student in studentListResult)
                 {
                     ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("first_name").ToString() + " " + student.GetAttribute("last_name").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("first_name").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("last_name").ToString());
                     string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
                     newItem.SubItems.Add(birthDateFormat);
                     newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString() + " " + student.GetAttribute("parent_last_name").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString());
+                    newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
                     newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
                     newItem.SubItems.Add(student.GetAttribute("address").ToString());
                 }
@@ -273,6 +269,6 @@ namespace Preschool_Student_Management
             loadStudentListToListView();
         }
 
-       
+        
     }
 }
