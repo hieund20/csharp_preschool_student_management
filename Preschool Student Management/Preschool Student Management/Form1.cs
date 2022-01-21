@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Preschool_Student_Management.Models;
 
+
 namespace Preschool_Student_Management
 {
     public partial class Form1 : Form
@@ -243,25 +244,35 @@ namespace Preschool_Student_Management
             if (e.KeyCode == Keys.Enter)
             {
                 string searchQuery = textBoxSearch.Text;
-                //Only can search by firs name, need to search full name
-                MessageBox.Show(searchQuery);
-
-                //Only search 1 time, when search another name and return search it won't show 
-                var studentQueryBuilder = Student.Query.Where("first_name", "=", searchQuery);
-                List<Student> studentListResult = studentQueryBuilder.Get();
-                MessageBox.Show(studentListResult.Count.ToString());
+                List<string> searchResult = Utils.selectQuery("select * from preschool_student_management_db.students where first_name like '" +
+                    searchQuery + "'", "last_name");
                 listViewStudent.Items.Clear();
-                foreach (var student in studentListResult)
+
+                foreach (var student in searchResult)
                 {
-                    ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("first_name").ToString() + " " + student.GetAttribute("last_name").ToString());
-                    string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
-                    newItem.SubItems.Add(birthDateFormat);
-                    newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString() + " " + student.GetAttribute("parent_last_name").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                    ListViewItem newItem = listViewStudent.Items.Add(1.ToString());
+                    newItem.SubItems.Add(student);
                 }
+
+                ////Only can search by firs name, need to search full name
+                ////Only search 1 time, when search another name and return search it won't show 
+                //var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("first_name", "=", searchQuery);
+                //List<Student> studentListResult = studentQueryBuilder.Get();
+                //MessageBox.Show(studentListResult.Count.ToString());
+                //listViewStudent.Items.Clear();
+                //foreach (var student in studentListResult)
+                //{
+                //    ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("first_name").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("last_name").ToString());
+                //    string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
+                //    newItem.SubItems.Add(birthDateFormat);
+                //    newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
+                //    newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                //}
                 textBoxSearch.Text = "";
             }
         }
