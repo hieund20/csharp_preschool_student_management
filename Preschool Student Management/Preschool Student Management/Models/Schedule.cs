@@ -10,12 +10,25 @@ namespace Preschool_Student_Management.Models
 {
 	class Schedule : Eloquent<Schedule>
 	{
-		public User User;
 		public override string TableName
 		{
 			get { return "schedules"; }
 		}
 
+		public DateTime StartedAt {
+			get { return DateTime.Parse(this.GetAttribute("started_at")); }
+			set { this.SetAttribute("started_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
+		}
+		public DateTime EndedAt
+		{
+			get { return DateTime.Parse(this.GetAttribute("ended_at")); }
+			set { this.SetAttribute("ended_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
+		}
+
+		public User User;
+		/// <summary>
+		/// With user who created the model
+		/// </summary>
 		public Schedule WithUser()
 		{
 			this.selectedQueues.Add((models) => {
