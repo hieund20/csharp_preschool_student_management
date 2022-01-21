@@ -73,5 +73,102 @@ namespace Preschool_Student_Management.Models
 
 			return this;
 		}
+
+		public List<Schedule> Schedules;
+		/// <summary>
+		/// With scheduels from A to B
+		/// </summary>
+		public Student WithSchedules(DateTime from, DateTime to) {
+			this.selectedQueues.Add((students) => {
+				var keys = new List<string>();
+				var classroomKeys = new List<string>();
+				foreach (var student in students)
+				{
+					keys.Add(student.Key);
+					classroomKeys.Add(student.GetAttribute("classroom_id"));
+				}
+
+				Console.WriteLine(classroomKeys.Count);
+				var schedules = Schedule.Query.Where("schedulable_type", "=", this.TableName)
+					.WhereIn("schedulable_id", keys)
+					.Where("started_at", ">=", from.ToString("yyyy/MM/dd HH:mm:ss"))
+					.Where("started_at", "<=", to.ToString("yyyy/MM/dd HH:mm:ss"))
+					.OrderBy("started_at")
+					.Get();
+
+				var classroomSchedules = Schedule.Query.Where("schedulable_type", "=", (new Classroom()).TableName)
+					.WhereIn("schedulable_id", classroomKeys)
+					.Where("started_at", ">=", from.ToString("yyyy/MM/dd HH:mm:ss"))
+					.Where("started_at", "<=", to.ToString("yyyy/MM/dd HH:mm:ss"))
+					.OrderBy("started_at")
+					.Get();
+				Console.WriteLine(Schedule.Query.Where("schedulable_type", "=", (new Classroom()).TableName)
+					.WhereIn("schedulable_id", classroomKeys)
+					.Where("started_at", ">=", from.ToString("yyyy/MM/dd HH:mm:ss"))
+					.Where("started_at", "<=", to.ToString("yyyy/MM/dd HH:mm:ss"))
+					.OrderBy("started_at").ToSql());
+				Console.WriteLine(classroomSchedules.Count);
+
+				foreach (var student in students)
+				{
+					student.Schedules = new List<Schedule>();
+
+					foreach (var scheduel in schedules)
+					{
+						if (
+							scheduel.GetAttribute("schedulable_id") == student.Key
+						)
+						{
+							student.Schedules.Add(scheduel);
+						}
+					}
+
+					foreach (var scheduel in classroomSchedules)
+					{
+						if (
+							scheduel.GetAttribute("schedulable_id") == student.GetAttribute("classroom_id")
+						)
+						{
+							student.Schedules.Add(scheduel);
+						}
+					}
+				}
+
+				return students;
+			});
+
+			return this;
+		}
+
+		public Schedule ClosestScheduel;
+		/// <summary>
+		/// With closet scheduel will occur in future
+		/// </summary>
+		public Student WithClosestScheduel(double future = 99)
+		{
+			this.WithSchedules(DateTime.Now, DateTime.Now.AddDays(future));
+
+			this.selectedQueues.Add((students) => {
+
+				foreach (var student in students)
+				{
+					foreach (var scheduel in student.Schedules)
+					{
+						student.ClosestScheduel = scheduel;
+
+						if (
+							student.ClosestScheduel.StartedAt > scheduel.StartedAt
+						)
+						{
+							student.ClosestScheduel = scheduel;
+						}
+					}
+				}
+
+				return students;
+			});
+
+			return this;
+		}
 	}
 }

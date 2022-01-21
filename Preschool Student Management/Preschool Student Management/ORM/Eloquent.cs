@@ -12,7 +12,9 @@ namespace Preschool_Student_Management.ORM
 		/// <summary>
 		/// Used to build query
 		/// </summary>
-		public static T Query = new T();
+		public static T Query {
+			get { return new T(); }
+		}
 
 		/// <summary>
 		/// Contain all attibutes of the model
@@ -68,6 +70,12 @@ namespace Preschool_Student_Management.ORM
 		/// </summary>
 		public string KeyName {
 			get { return "id"; }
+		}
+
+		public string Key 
+		{
+			get { return this.GetAttribute(this.KeyName); }
+			set { this.SetAttribute(this.KeyName, value); }
 		}
 
 
