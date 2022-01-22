@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ColumnHeader columnHeader5;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,53 +76,19 @@
             this.columnHeaderPhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
+            this.tabUser = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabClassPage = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
-            this.tabUser = new System.Windows.Forms.TabPage();
-            this.removeUserbtn = new System.Windows.Forms.Button();
-            this.addUserbtn = new System.Windows.Forms.Button();
-            this.editUserbtn = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.nametxt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.usernametxt = new System.Windows.Forms.TextBox();
-            this.createdtime = new System.Windows.Forms.DateTimePicker();
-            this.passtxt = new System.Windows.Forms.TextBox();
-            this.emailtxt = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.searchtxt = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabStudentPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabClassPage.SuspendLayout();
             this.tabUser.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tabClassPage.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // columnHeader5
-            // 
-            columnHeader5.Text = "Mật khẩu";
-            columnHeader5.Width = 134;
             // 
             // panel1
             // 
@@ -294,7 +259,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(995, 574);
             this.tabControl.TabIndex = 3;
-            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.listViewUser_SelectedIndexChanged);
             // 
             // tabStudentPage
             // 
@@ -565,7 +529,6 @@
             this.columnHeaderAddress});
             this.listViewStudent.FullRowSelect = true;
             this.listViewStudent.GridLines = true;
-            this.listViewStudent.HideSelection = false;
             this.listViewStudent.Location = new System.Drawing.Point(26, 276);
             this.listViewStudent.Name = "listViewStudent";
             this.listViewStudent.Size = new System.Drawing.Size(941, 230);
@@ -629,6 +592,27 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "QUẢN LÝ HỌC SINH";
             // 
+            // tabUser
+            // 
+            this.tabUser.BackColor = System.Drawing.Color.White;
+            this.tabUser.Controls.Add(this.label3);
+            this.tabUser.Location = new System.Drawing.Point(4, 22);
+            this.tabUser.Name = "tabUser";
+            this.tabUser.Padding = new System.Windows.Forms.Padding(3);
+            this.tabUser.Size = new System.Drawing.Size(987, 548);
+            this.tabUser.TabIndex = 1;
+            this.tabUser.Text = "tabPage2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(23, 47);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(288, 18);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
+            // 
             // tabClassPage
             // 
             this.tabClassPage.BackColor = System.Drawing.Color.White;
@@ -649,317 +633,6 @@
             this.label5.Size = new System.Drawing.Size(159, 18);
             this.label5.TabIndex = 0;
             this.label5.Text = "QUẢN LÝ LỚP HỌC";
-            // 
-            // tabUser
-            // 
-            this.tabUser.BackColor = System.Drawing.Color.White;
-            this.tabUser.Controls.Add(this.button1);
-            this.tabUser.Controls.Add(this.label18);
-            this.tabUser.Controls.Add(this.searchtxt);
-            this.tabUser.Controls.Add(this.removeUserbtn);
-            this.tabUser.Controls.Add(this.addUserbtn);
-            this.tabUser.Controls.Add(this.editUserbtn);
-            this.tabUser.Controls.Add(this.listView1);
-            this.tabUser.Controls.Add(this.groupBox2);
-            this.tabUser.Controls.Add(this.label3);
-            this.tabUser.Location = new System.Drawing.Point(4, 22);
-            this.tabUser.Name = "tabUser";
-            this.tabUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUser.Size = new System.Drawing.Size(987, 548);
-            this.tabUser.TabIndex = 1;
-            this.tabUser.Text = "tabPage2";
-            // 
-            // removeUserbtn
-            // 
-            this.removeUserbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.removeUserbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.removeUserbtn.FlatAppearance.BorderSize = 0;
-            this.removeUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeUserbtn.ForeColor = System.Drawing.Color.White;
-            this.removeUserbtn.Location = new System.Drawing.Point(823, 229);
-            this.removeUserbtn.Name = "removeUserbtn";
-            this.removeUserbtn.Size = new System.Drawing.Size(118, 36);
-            this.removeUserbtn.TabIndex = 10;
-            this.removeUserbtn.Text = "Xóa TT User";
-            this.removeUserbtn.UseVisualStyleBackColor = false;
-            this.removeUserbtn.Click += new System.EventHandler(this.removeUserbtn_Click);
-            // 
-            // addUserbtn
-            // 
-            this.addUserbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addUserbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.addUserbtn.FlatAppearance.BorderSize = 0;
-            this.addUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addUserbtn.ForeColor = System.Drawing.Color.White;
-            this.addUserbtn.Location = new System.Drawing.Point(553, 229);
-            this.addUserbtn.Name = "addUserbtn";
-            this.addUserbtn.Size = new System.Drawing.Size(118, 36);
-            this.addUserbtn.TabIndex = 8;
-            this.addUserbtn.Text = "Thêm TT User";
-            this.addUserbtn.UseVisualStyleBackColor = false;
-            this.addUserbtn.Click += new System.EventHandler(this.addUserbtn_Click);
-            // 
-            // editUserbtn
-            // 
-            this.editUserbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.editUserbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.editUserbtn.FlatAppearance.BorderSize = 0;
-            this.editUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editUserbtn.ForeColor = System.Drawing.Color.White;
-            this.editUserbtn.Location = new System.Drawing.Point(688, 229);
-            this.editUserbtn.Name = "editUserbtn";
-            this.editUserbtn.Size = new System.Drawing.Size(118, 36);
-            this.editUserbtn.TabIndex = 9;
-            this.editUserbtn.Text = "Sửa TT User";
-            this.editUserbtn.UseVisualStyleBackColor = false;
-            this.editUserbtn.Click += new System.EventHandler(this.editUserbtn_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(26, 284);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(941, 230);
-            this.listView1.TabIndex = 11;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listViewUser_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Mã người dùng";
-            this.columnHeader1.Width = 83;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Họ và tên";
-            this.columnHeader2.Width = 151;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tên người dùng";
-            this.columnHeader3.Width = 158;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Email";
-            this.columnHeader4.Width = 157;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Quyền hạn";
-            this.columnHeader6.Width = 114;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Ngày tạo tài khoản";
-            this.columnHeader7.Width = 142;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.radioButton2);
-            this.groupBox2.Controls.Add(this.radioButton1);
-            this.groupBox2.Controls.Add(this.nametxt);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.usernametxt);
-            this.groupBox2.Controls.Add(this.createdtime);
-            this.groupBox2.Controls.Add(this.passtxt);
-            this.groupBox2.Controls.Add(this.emailtxt);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Location = new System.Drawing.Point(26, 88);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(941, 133);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin chi tiết";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(134, 101);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(70, 17);
-            this.radioButton2.TabIndex = 5;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Giáo viên";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(32, 101);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(53, 17);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.Text = "admin";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // nametxt
-            // 
-            this.nametxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.nametxt.Location = new System.Drawing.Point(22, 42);
-            this.nametxt.Name = "nametxt";
-            this.nametxt.Size = new System.Drawing.Size(254, 20);
-            this.nametxt.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(341, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Ngày tạo tài khoản";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(341, 26);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(82, 13);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "Tên người dùng";
-            // 
-            // usernametxt
-            // 
-            this.usernametxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.usernametxt.Location = new System.Drawing.Point(344, 42);
-            this.usernametxt.Name = "usernametxt";
-            this.usernametxt.Size = new System.Drawing.Size(254, 20);
-            this.usernametxt.TabIndex = 2;
-            // 
-            // createdtime
-            // 
-            this.createdtime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.createdtime.Location = new System.Drawing.Point(344, 97);
-            this.createdtime.Name = "createdtime";
-            this.createdtime.Size = new System.Drawing.Size(254, 20);
-            this.createdtime.TabIndex = 6;
-            // 
-            // passtxt
-            // 
-            this.passtxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.passtxt.Location = new System.Drawing.Point(663, 97);
-            this.passtxt.Name = "passtxt";
-            this.passtxt.PasswordChar = '*';
-            this.passtxt.Size = new System.Drawing.Size(254, 20);
-            this.passtxt.TabIndex = 7;
-            // 
-            // emailtxt
-            // 
-            this.emailtxt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.emailtxt.Location = new System.Drawing.Point(662, 42);
-            this.emailtxt.Name = "emailtxt";
-            this.emailtxt.Size = new System.Drawing.Size(254, 20);
-            this.emailtxt.TabIndex = 3;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(19, 81);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(59, 13);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "Quyền hạn";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(660, 81);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(52, 13);
-            this.label20.TabIndex = 5;
-            this.label20.Text = "Mật khẩu";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(660, 26);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(32, 13);
-            this.label21.TabIndex = 2;
-            this.label21.Text = "Email";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(19, 26);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(54, 13);
-            this.label23.TabIndex = 0;
-            this.label23.Text = "Họ và tên";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(288, 18);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(155, 241);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(156, 13);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "Nhập tên học sinh cần tìm";
-            // 
-            // searchtxt
-            // 
-            this.searchtxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchtxt.Location = new System.Drawing.Point(317, 238);
-            this.searchtxt.Name = "searchtxt";
-            this.searchtxt.Size = new System.Drawing.Size(216, 20);
-            this.searchtxt.TabIndex = 12;
-            this.searchtxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchtxt_KeyDown);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(26, 254);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 24);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "cập nhật";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -986,12 +659,10 @@
             this.tabStudentPage.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabClassPage.ResumeLayout(false);
-            this.tabClassPage.PerformLayout();
             this.tabUser.ResumeLayout(false);
             this.tabUser.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.tabClassPage.ResumeLayout(false);
+            this.tabClassPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1049,33 +720,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ColumnHeader columnStudentLastname;
         private System.Windows.Forms.ColumnHeader columnParentLastName;
-        private System.Windows.Forms.Button removeUserbtn;
-        private System.Windows.Forms.Button addUserbtn;
-        private System.Windows.Forms.Button editUserbtn;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox nametxt;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox usernametxt;
-        private System.Windows.Forms.DateTimePicker createdtime;
-        private System.Windows.Forms.TextBox passtxt;
-        private System.Windows.Forms.TextBox emailtxt;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox searchtxt;
-        private System.Windows.Forms.Button button1;
     }
 }
 

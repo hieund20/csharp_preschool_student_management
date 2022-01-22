@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="columnHeader5.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="panelLogoBrand.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -211,12 +208,12 @@
   </data>
   <data name="buttonTabUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAARBJREFUSEvt
-        kzFOAlEURQelpieBysrSkrAIG+JqJHEBJvQugC1AZesW7KwgNFhSYZ7n/rlEAoOYP5nERE9yMp/7Xt6f
-        /PkU//xuIqKHU1xarXsu10ODcI2HKKu/CUP0tmKG2kxqLaZuy4chi3JW9B0p65dRLBzloyHlrOY2aPyI
-        mv3IQoPw5DVl3cUdXcf1YdgQ2zjWZKO1sqHbTkPTNT7gHN9wi2PXRig2fu6zy0Zp0CEUBvicWo65cc+k
-        /JmougBikgbuQ3iHelPxjk94i1d44Tb1tfAFRdUVVq3l+AvC11SOeMSO4yOoZW/wkcoRl44qoZ59ROe4
-        d1/eR3bhO1aYjo5nvWv6UxjWzB/tL1EUn7e8oApaPrtrAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEQSURBVEhL7ZMxTgJRFEUHpaYngcrK0pKwCBviaiRxASb0LoAtQGXrFuysIDRYUmGe5/65RAKD
+        mD+ZxERPcjKf+17en/z5FP/8biKih1NcWq17LtdDg3CNhyirvwlD9LZihtpMai2mbsuHIYtyVvQdKeuX
+        USwc5aMh5azmNmj8iJr9yEKD8OQ1Zd3FHV3H9WHYENs41mSjtbKh205D0zU+4BzfcItj10YoNn7us8tG
+        adAhFAb4nFqOuXHPpPyZqLoAYpIG7kN4h3pT8Y5PeItXeOE29bXwBUXVFVat5fgLwtdUjnjEjuMjqGVv
+        8JHKEZeOKqGefUTnuHdf3kd24TtWmI6OZ71r+lMY1swf7S9RFJ+3vKAKWj67awAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="buttonTabStudent.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
