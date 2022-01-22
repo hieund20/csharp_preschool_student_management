@@ -261,7 +261,8 @@ namespace Preschool_Student_Management
                 textBoxSearch.Text = "";
             }
         }
-        // User
+
+        //USER MANAGEMENT TAB
         //========================//
         private void loadUsertListToListView()
         {
@@ -349,8 +350,6 @@ namespace Preschool_Student_Management
             else
             {
                
-               
-
                 //Update under database
                 var user = new User();
                 user.SetAttribute("name", nametxt.Text);
@@ -451,10 +450,6 @@ namespace Preschool_Student_Management
             }
             
         }
-
-      
-
-    
 
         private void searchtxt_KeyDown(object sender, KeyEventArgs e)
         {
