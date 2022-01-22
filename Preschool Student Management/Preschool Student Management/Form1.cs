@@ -261,6 +261,7 @@ namespace Preschool_Student_Management
                 textBoxSearch.Text = "";
             }
         }
+        // User
         //========================//
         private void loadUsertListToListView()
         {
@@ -422,13 +423,7 @@ namespace Preschool_Student_Management
             }
             
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            hideTabHeader();
-            loadStudentListToListView();
-            loadUsertListToListView();
-        }
-
+       
         private void removeUserbtn_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -509,5 +504,14 @@ namespace Preschool_Student_Management
         {
             updateUserList();
         }
+        // ---------------------------------------------------
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            hideTabHeader();
+            loadStudentListToListView();
+            loadUsertListToListView();
+        }
+
     }
+
 }
