@@ -287,6 +287,7 @@ namespace Preschool_Student_Management
 
             }
         }
+
         private void listViewUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -326,6 +327,7 @@ namespace Preschool_Student_Management
             }
             
         }
+
         private void resetUserTextboxList()
         {
             nametxt.Text = "";
@@ -336,6 +338,7 @@ namespace Preschool_Student_Management
             passtxt.Text = "";
             emailtxt.Text = "";
         }
+
         private void addUserbtn_Click(object sender, EventArgs e)
         {
             if (nametxt.Text == "" ||
@@ -379,6 +382,7 @@ namespace Preschool_Student_Management
                 resetUserTextboxList();
             }
         }
+
         private void editUserbtn_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -489,6 +493,7 @@ namespace Preschool_Student_Management
         }
             
         }
+
         private void updateUserList()
         {
             listView1.Items.Clear();
@@ -500,6 +505,7 @@ namespace Preschool_Student_Management
             updateUserList();
         }
         // ---------------------------------------------------
+
         private void Form1_Load(object sender, EventArgs e)
         {
             hideTabHeader();
