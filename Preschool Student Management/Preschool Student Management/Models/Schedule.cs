@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace Preschool_Student_Management.Models
 {
-	class Schedule : Eloquent<Schedule>
+	public class Schedule : Eloquent<Schedule>
 	{
 		public override string TableName
 		{
