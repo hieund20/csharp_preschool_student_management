@@ -7,7 +7,7 @@ using Preschool_Student_Management;
 
 namespace Preschool_Student_Management.ORM
 {
-	abstract class Eloquent<T> where T : Eloquent<T>, new()
+	abstract public class Eloquent<T> where T : Eloquent<T>, new()
 	{
 		/// <summary>
 		/// Used to build query
