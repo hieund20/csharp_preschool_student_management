@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Preschool_Student_Management.Models
 {
-	class Classroom : Eloquent<Classroom>
+	public class Classroom : Eloquent<Classroom>
 	{
 
 		/// <summary>

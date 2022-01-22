@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Preschool_Student_Management.ORM
 {
-	class Condition
+	public class Condition
 	{
 		protected string condition;
 		protected string concatenation;

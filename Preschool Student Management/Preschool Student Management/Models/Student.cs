@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace Preschool_Student_Management.Models
 {
-	class Student : Eloquent<Student>
+	public class Student : Eloquent<Student>
 	{
 		public Classroom Classroom;
 
