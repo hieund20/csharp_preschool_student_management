@@ -80,6 +80,9 @@
             this.tabClassPage = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.tabUser = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.searchtxt = new System.Windows.Forms.TextBox();
             this.removeUserbtn = new System.Windows.Forms.Button();
             this.addUserbtn = new System.Windows.Forms.Button();
             this.editUserbtn = new System.Windows.Forms.Button();
@@ -105,9 +108,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.searchtxt = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -669,6 +669,43 @@
             this.tabUser.TabIndex = 1;
             this.tabUser.Text = "tabPage2";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(26, 254);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(73, 24);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Cập nhật";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(122, 241);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(189, 13);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "Nhập họ tên người dùng cần tìm";
+            // 
+            // searchtxt
+            // 
+            this.searchtxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchtxt.Location = new System.Drawing.Point(317, 238);
+            this.searchtxt.Name = "searchtxt";
+            this.searchtxt.Size = new System.Drawing.Size(216, 20);
+            this.searchtxt.TabIndex = 12;
+            this.searchtxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchtxt_KeyDown);
+            // 
             // removeUserbtn
             // 
             this.removeUserbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -923,43 +960,6 @@
             this.label3.Size = new System.Drawing.Size(288, 18);
             this.label3.TabIndex = 0;
             this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(155, 241);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(156, 13);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "Nhập tên học sinh cần tìm";
-            // 
-            // searchtxt
-            // 
-            this.searchtxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchtxt.Location = new System.Drawing.Point(317, 238);
-            this.searchtxt.Name = "searchtxt";
-            this.searchtxt.Size = new System.Drawing.Size(216, 20);
-            this.searchtxt.TabIndex = 12;
-            this.searchtxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchtxt_KeyDown);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(26, 254);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 24);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "cập nhật";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
