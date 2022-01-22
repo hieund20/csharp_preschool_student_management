@@ -261,14 +261,257 @@ namespace Preschool_Student_Management
                 textBoxSearch.Text = "";
             }
         }
+        // User
         //========================//
+        private void loadUsertListToListView()
+        {
+            var userList = User.Query.Get();
+            foreach (var user in userList)
+            {
+                ListViewItem newItem = listView1.Items.Add(user.GetAttribute("id").ToString());
+                newItem.SubItems.Add(user.GetAttribute("name").ToString());
+                newItem.SubItems.Add(user.GetAttribute("username").ToString());              
+                newItem.SubItems.Add(user.GetAttribute("email").ToString());
+                newItem.SubItems.Add(user.GetAttribute("password").ToString());
+                string role = user.GetAttribute("role").ToString();
+                if (role == "1")
+                {
+                    newItem.SubItems.Add("admin");
+                }
+                else
+                    newItem.SubItems.Add("Giáo viên");
+                string format = "yyyy-MM-dd HH:mm:ss";
+                string created = DateTime.Parse(user.GetAttribute("created_at")).ToString(format);              
+                newItem.SubItems.Add(created);
 
+            }
+        }
+        private void listViewUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                {
+                    addUserbtn.Enabled = false;
+                    editUserbtn.Enabled = true;
+                    removeUserbtn.Enabled = true;
+                    try
+                    {
+
+                        nametxt.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                        usernametxt.Text = listView1.SelectedItems[0].SubItems[2].Text;
+                        emailtxt.Text = listView1.SelectedItems[0].SubItems[3].Text;
+                        passtxt.Text = listView1.SelectedItems[0].SubItems[4].Text;
+                        string role = listView1.SelectedItems[0].SubItems[5].Text;
+                        if (role == "admin")
+                        {
+                            radioButton1.Checked = true;
+                        }
+                        else if (role == "Giáo viên")
+                            radioButton2.Checked = true;
+                        createdtime.Value = DateTime.Parse(listView1.SelectedItems[0].SubItems[6].Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex);
+                    }
+                }
+            }
+            else
+            {
+                resetUserTextboxList();
+                editUserbtn.Enabled = false;
+                addUserbtn.Enabled = true;
+                removeUserbtn.Enabled = false;
+            }
+            
+        }
+        private void resetUserTextboxList()
+        {
+            nametxt.Text = "";
+            usernametxt.Text = "";
+            createdtime.Value = DateTime.Now;
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            passtxt.Text = "";
+            emailtxt.Text = "";
+        }
+        private void addUserbtn_Click(object sender, EventArgs e)
+        {
+            if (nametxt.Text == "" ||
+            usernametxt.Text == "" ||
+            emailtxt.Text == "" ||
+            passtxt.Text == "" ||
+            radioButton1.Checked == true ||
+            radioButton1.Checked == true)
+            {
+                MessageBox.Show("Bạn phải nhập đủ các trường dữ liệu !", "Thông báo");
+            }
+            else
+            {
+               
+               
+
+                //Update under database
+                var user = new User();
+                user.SetAttribute("name", nametxt.Text);
+                user.SetAttribute("username", usernametxt.Text);
+                user.SetAttribute("email", emailtxt.Text);
+                user.SetAttribute("password", passtxt.Text);
+                if (radioButton1.Checked == true)
+                {
+                    user.SetAttribute("role", "1");
+                }
+                else if (radioButton2.Checked == true)
+                { user.SetAttribute("role", "2"); }             
+                user.SetAttribute("created_at", createdtime.Value.ToString("yyyy-MM-dd  HH:mm:ss"));
+                user.Save();
+                // load listview
+                listView1.SelectedItems[0].SubItems[1].Text = nametxt.Text;
+                listView1.SelectedItems[0].SubItems[2].Text = usernametxt.Text;
+                listView1.SelectedItems[0].SubItems[3].Text = emailtxt.Text;
+                listView1.SelectedItems[0].SubItems[4].Text = passtxt.Text;
+                if (radioButton1.Checked == true)
+                {
+                    listView1.SelectedItems[0].SubItems[5].Text = "admin";
+                }
+                else if (radioButton2.Checked == true)
+                { listView1.SelectedItems[0].SubItems[5].Text = "Giáo viên"; }                            
+                listView1.SelectedItems[0].SubItems[6].Text = createdtime.Value.ToShortDateString();
+                resetUserTextboxList();
+            }
+        }
+        private void editUserbtn_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    string idSelected = listView1.SelectedItems[0].SubItems[0].Text;
+                    User user = User.Query.Where("id", "=", idSelected).First();
+
+                    //Update on UI
+                    listView1.SelectedItems[0].SubItems[1].Text = nametxt.Text;
+                    listView1.SelectedItems[0].SubItems[2].Text = usernametxt.Text;
+                    listView1.SelectedItems[0].SubItems[3].Text = emailtxt.Text;
+                    listView1.SelectedItems[0].SubItems[4].Text = passtxt.Text;
+                    if (radioButton1.Checked == true)
+                    {
+                        listView1.SelectedItems[0].SubItems[5].Text = "admin";
+                    }
+                    else if (radioButton2.Checked == true)
+                    { listView1.SelectedItems[0].SubItems[5].Text = "Giáo viên"; }
+                    listView1.SelectedItems[0].SubItems[6].Text = createdtime.Value.ToShortDateString();
+
+                    //Update under database
+                    user.SetAttribute("name", nametxt.Text);
+                    user.SetAttribute("username", usernametxt.Text);
+                    user.SetAttribute("email",emailtxt.Text);
+                    user.SetAttribute("password", passtxt.Text);
+                    if (radioButton1.Checked == true)
+                    {
+                        user.SetAttribute("role", "1");
+                    }
+                    else if (radioButton2.Checked == true)
+                    { user.SetAttribute("role", "2"); }
+                    user.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    user.Save();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
+            }
+            
+        }
+       
+        private void removeUserbtn_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                var confirmDialog = MessageBox.Show(
+                "Bạn có chắc muốn xóa dòng này?",
+                "Xác nhận xóa thông tin",
+                MessageBoxButtons.YesNo);
+                if (confirmDialog == DialogResult.Yes)
+                {
+                    //Update under database
+                    string idSelected = listView1.SelectedItems[0].SubItems[0].Text;
+                    User user = User.Query.Where("id", "=", idSelected).First();
+                    user.Delete();
+
+                    //Update on UI
+                 
+                    resetUserTextboxList();
+                    updateUserList();
+                }
+                else
+                {
+                    //Do not handle code
+                }
+            }
+            
+        }
+
+      
+
+    
+
+        private void searchtxt_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (searchtxt.Text == "")
+                {
+                    updateUserList();
+                }
+                else { 
+                    var userQuery = User.Query.Where("name", "=", searchtxt.Text);
+                    List<User> userListResult = userQuery.Get();
+                    listView1.Items.Clear();
+                    foreach (var user in userListResult)
+                    {
+
+                        ListViewItem newItem = listView1.Items.Add(user.GetAttribute("id").ToString());
+                        newItem.SubItems.Add(user.GetAttribute("name").ToString());
+                        newItem.SubItems.Add(user.GetAttribute("username").ToString());
+                        newItem.SubItems.Add(user.GetAttribute("email").ToString());
+                        newItem.SubItems.Add(user.GetAttribute("password").ToString());
+                        string role = user.GetAttribute("role").ToString();
+                        if (role == "1")
+                        {
+                            newItem.SubItems.Add("admin");
+                        }
+                        else
+                            newItem.SubItems.Add("Giáo viên");
+                        string format = "yyyy-MM-dd HH:mm:ss";
+                        string created = DateTime.Parse(user.GetAttribute("created_at")).ToString(format);
+                        newItem.SubItems.Add(created);
+                    }
+                    searchtxt.Text = "";
+                   }
+
+        }
+            
+        }
+        private void updateUserList()
+        {
+            listView1.Items.Clear();
+            loadUsertListToListView();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            updateUserList();
+        }
+        // ---------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
             hideTabHeader();
             loadStudentListToListView();
+            loadUsertListToListView();
         }
 
-        
     }
+
 }

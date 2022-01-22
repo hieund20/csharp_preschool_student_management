@@ -13,9 +13,9 @@ namespace Preschool_Student_Management
         {
             string host = "127.0.0.1";
             int port = 3306;
-            string database = "preschool_student_management_db";
+            string database = "ltgd";
             string username = "root";
-            string password = "Duchieu200301";
+            string password = "12345678";
 
             return DBMySQLUtils.getDBConnection(host, port, database, username, password);
         }
