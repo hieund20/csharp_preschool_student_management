@@ -15,6 +15,9 @@ namespace Preschool_Student_Management.Models
 			get { return "schedules"; }
 		}
 
+		readonly public static int LearningType = 1;
+		readonly public static int VacxinType = 1;
+
 		public DateTime StartedAt {
 			get { return DateTime.Parse(this.GetAttribute("started_at")); }
 			set { this.SetAttribute("started_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
@@ -23,6 +26,12 @@ namespace Preschool_Student_Management.Models
 		{
 			get { return DateTime.Parse(this.GetAttribute("ended_at")); }
 			set { this.SetAttribute("ended_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
+		}
+
+		public DateTime CreatedAt
+		{
+			get { return DateTime.Parse(this.GetAttribute("created_at")); }
+			set { this.SetAttribute("created_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
 		}
 
 		public User User;

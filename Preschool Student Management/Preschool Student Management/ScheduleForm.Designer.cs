@@ -90,6 +90,7 @@ namespace Preschool_Student_Management
 			this.thêmLịchHọcToolStripMenuItem.Name = "thêmLịchHọcToolStripMenuItem";
 			this.thêmLịchHọcToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
 			this.thêmLịchHọcToolStripMenuItem.Text = "Thêm Lịch học";
+			this.thêmLịchHọcToolStripMenuItem.Click += new System.EventHandler(this.thêmLịchHọcToolStripMenuItem_Click);
 			// 
 			// thêmLịchKhácToolStripMenuItem
 			// 

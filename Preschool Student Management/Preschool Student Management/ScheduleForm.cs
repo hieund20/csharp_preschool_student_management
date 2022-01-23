@@ -25,6 +25,9 @@ namespace Preschool_Student_Management
 
 		private List<Schedule> schedules = new List<Schedule>();
 
+		private string schedulableId;
+		private string schedulableType;
+
 		private List<Schedule> Schedules
 		{
 			set
@@ -40,17 +43,29 @@ namespace Preschool_Student_Management
 		public ScheduleForm(Classroom classroom)
 		{
 			this.classroom = classroom;
+			this.schedulableId = classroom.Key;
+			this.schedulableType = classroom.TableName;
+
+			this.LoadSchedule();
+
 			InitializeComponent();
 		}
 
 		public ScheduleForm(Student student)
 		{
 			this.student = student;
+			this.schedulableId = student.Key;
+			this.schedulableType = student.TableName;
+			this.LoadSchedule();
+
 			InitializeComponent();
 		}
 
 		private Classroom classroom;
 		private Student student;
+		private void LoadSchedule() {
+			this.ReloadSchedule();
+		}
 		private void ReloadSchedule() {
 			if (this.classroom != null)
 			{
@@ -193,6 +208,15 @@ namespace Preschool_Student_Management
 		private void btnPreWeek_Click(object sender, EventArgs e)
 		{
 			this.week -= 1;
+			this.RerenderSchedules();
+		}
+
+		private void thêmLịchHọcToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var createLearningScheduleForm = new CreateLearningScheduleForm(this.schedulableType, this.schedulableId);
+			createLearningScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			createLearningScheduleForm.ShowDialog();
+
 			this.RerenderSchedules();
 		}
 	}
