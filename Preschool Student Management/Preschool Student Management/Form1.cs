@@ -728,13 +728,37 @@ namespace Preschool_Student_Management
             }
         }
 
+        private void buttonShowClassEvent_Click(object sender, EventArgs e)
+        {
+            if (listViewClass.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    string idSelected = listViewClass.SelectedItems[0].SubItems[0].Text;
+                    var scheduleForm = new ScheduleForm(Classroom.Query.Find(idSelected));
+                    scheduleForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex);
+                }
+            }
+        }
+        // ---------------------------------------------------
+
         private void Form1_Load(object sender, EventArgs e)
         {
             hideTabHeader();
             loadStudentListToListView();
             loadUsertListToListView();
             loadClassListToListView();
-        }     
+        }
+
+       
     }
 
 }
