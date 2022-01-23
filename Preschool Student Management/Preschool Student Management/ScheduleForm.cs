@@ -136,46 +136,46 @@ namespace Preschool_Student_Management
 				empty = this.CreateScheduleEmpty(this.flpMonday.Size.Width, this.flpMonday.Size.Height, latestEndedAt, schedule);
 				btn = this.CreateScheduleButton(this.flpMonday.Size.Width, this.flpMonday.Size.Height, schedule);
 
-				switch ((int)schedule.StartedAt.DayOfWeek)
+				switch (schedule.StartedAt.DayOfWeek)
 				{
 					// Monday
-					case 1:
+					case DayOfWeek.Monday:
 						this.flpMonday.Controls.Add(empty);
 						this.flpMonday.Controls.Add(btn);
 						break;
 
 					// Tuesday
-					case 2:
+					case DayOfWeek.Tuesday:
 						this.flpTuesday.Controls.Add(empty);
 						this.flpTuesday.Controls.Add(btn);
 						break;
 
 					// Wednesday
-					case 3:
+					case DayOfWeek.Wednesday:
 						this.flpWednesday.Controls.Add(empty);
 						this.flpWednesday.Controls.Add(btn);
 						break;
 
 					// Thursday
-					case 4:
+					case DayOfWeek.Thursday:
 						this.flpThursday.Controls.Add(empty);
 						this.flpThursday.Controls.Add(btn);
 						break;
 
 					// Friday
-					case 5:
+					case DayOfWeek.Friday:
 						this.flpFriday.Controls.Add(empty);
 						this.flpFriday.Controls.Add(btn);
 						break;
 
 					// Saturday
-					case 6:
+					case DayOfWeek.Saturday:
 						this.flpSaturday.Controls.Add(empty);
 						this.flpSaturday.Controls.Add(btn);
 						break;
 
 					// Sunday
-					case 7:
+					case DayOfWeek.Sunday:
 						this.flpSunday.Controls.Add(empty);
 						this.flpSunday.Controls.Add(btn);
 						break;
