@@ -14,9 +14,9 @@ namespace Preschool_Student_Management
 	public partial class CreateLearningScheduleForm : Form
 	{
 		private string schedulableType;
-		private string schedulableId;
+		private int schedulableId;
 
-		public CreateLearningScheduleForm(string schedulableType, string schedulableId)
+		public CreateLearningScheduleForm(string schedulableType, int schedulableId)
 		{
 			this.schedulableType = schedulableType;
 			this.schedulableId = schedulableId;
@@ -25,23 +25,7 @@ namespace Preschool_Student_Management
 
 		private Schedule CreateSchedule(string name, string description, DateTime timeFrom, DateTime timeTo, DateTime date)
 		{
-			var schedule = new Schedule();
-
-			schedule.SetAttribute("schedulable_id", this.schedulableId);
-			schedule.SetAttribute("schedulable_type", this.schedulableType);
-			schedule.SetAttribute("name", name);
-			schedule.SetAttribute("description", description);
-			schedule.SetAttribute("type", Schedule.LearningType.ToString());
-			schedule.SetAttribute("user_id", User.CurrentUsser.Key);
-
-			schedule.StartedAt = new DateTime(date.Year, date.Month, date.Day, timeFrom.Hour, timeFrom.Minute, 0);
-			schedule.EndedAt= new DateTime(date.Year, date.Month, date.Day, timeTo.Hour, timeTo.Minute, 0);
-			schedule.CreatedAt = DateTime.Now;
-
-			schedule.Save();
-
-
-			return schedule;
+			return Schedule.Create(this.schedulableType, this.schedulableId, name, description, date, timeFrom, timeTo);
 		}
 
 		private void btnClose_Click(object sender, EventArgs e)
@@ -63,7 +47,7 @@ namespace Preschool_Student_Management
 				MessageBox.Show("Tên là bắt buộc", "Error!");
 				return;
 			}
-			if (timeFrom >= timeTo)
+			if ((timeTo - timeFrom).TotalMinutes < 30)
 			{
 				MessageBox.Show("Khung giờ không hợp lệ", "Error!");
 				return;

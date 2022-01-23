@@ -97,6 +97,7 @@ namespace Preschool_Student_Management
 			this.thêmLịchKhácToolStripMenuItem.Name = "thêmLịchKhácToolStripMenuItem";
 			this.thêmLịchKhácToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
 			this.thêmLịchKhácToolStripMenuItem.Text = "Thêm Lịch Tiêm";
+			this.thêmLịchKhácToolStripMenuItem.Click += new System.EventHandler(this.thêmLịchKhácToolStripMenuItem_Click);
 			// 
 			// flpSaturday
 			// 

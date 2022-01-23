@@ -25,7 +25,7 @@ namespace Preschool_Student_Management
 
 		private List<Schedule> schedules = new List<Schedule>();
 
-		private string schedulableId;
+		private int schedulableId;
 		private string schedulableType;
 
 		private List<Schedule> Schedules
@@ -43,7 +43,7 @@ namespace Preschool_Student_Management
 		public ScheduleForm(Classroom classroom)
 		{
 			this.classroom = classroom;
-			this.schedulableId = classroom.Key;
+			this.schedulableId = int.Parse(classroom.Key);
 			this.schedulableType = classroom.TableName;
 
 			this.LoadSchedule();
@@ -54,7 +54,7 @@ namespace Preschool_Student_Management
 		public ScheduleForm(Student student)
 		{
 			this.student = student;
-			this.schedulableId = student.Key;
+			this.schedulableId = int.Parse(student.Key);
 			this.schedulableType = student.TableName;
 			this.LoadSchedule();
 
@@ -216,6 +216,15 @@ namespace Preschool_Student_Management
 			var createLearningScheduleForm = new CreateLearningScheduleForm(this.schedulableType, this.schedulableId);
 			createLearningScheduleForm.StartPosition = FormStartPosition.CenterParent;
 			createLearningScheduleForm.ShowDialog();
+
+			this.RerenderSchedules();
+		}
+
+		private void thêmLịchKhácToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var createVaccineScheduleForm = new CreateVaccineSchedule(this.schedulableType, this.schedulableId);
+			createVaccineScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			createVaccineScheduleForm.ShowDialog();
 
 			this.RerenderSchedules();
 		}
