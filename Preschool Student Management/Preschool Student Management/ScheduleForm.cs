@@ -25,6 +25,9 @@ namespace Preschool_Student_Management
 
 		private List<Schedule> schedules = new List<Schedule>();
 
+		private int schedulableId;
+		private string schedulableType;
+
 		private List<Schedule> Schedules
 		{
 			set
@@ -37,25 +40,32 @@ namespace Preschool_Student_Management
 			}
 		}
 
-		public ScheduleForm()
-		{
-			InitializeComponent();
-		}
-
 		public ScheduleForm(Classroom classroom)
 		{
 			this.classroom = classroom;
+			this.schedulableId = int.Parse(classroom.Key);
+			this.schedulableType = classroom.TableName;
+
+			this.LoadSchedule();
+
 			InitializeComponent();
 		}
 
 		public ScheduleForm(Student student)
 		{
 			this.student = student;
+			this.schedulableId = int.Parse(student.Key);
+			this.schedulableType = student.TableName;
+			this.LoadSchedule();
+
 			InitializeComponent();
 		}
 
 		private Classroom classroom;
 		private Student student;
+		private void LoadSchedule() {
+			this.ReloadSchedule();
+		}
 		private void ReloadSchedule() {
 			if (this.classroom != null)
 			{
@@ -92,8 +102,19 @@ namespace Preschool_Student_Management
 			btn.Text = schedule.GetAttribute("name") + "\n" + schedule.StartedAt.ToString("hh:mm") + " - " + schedule.EndedAt.ToString("hh:mm");
 			btn.Size = new Size(parentWidth, (int)((period.TotalHours / this.hourPeriod) * parentHeight));
 			btn.Margin = new Padding(0);
+			btn.Tag = schedule;
+			btn.Click += Btn_Click;
 
 			return btn;
+		}
+
+		private void Btn_Click(object sender, EventArgs e)
+		{
+			var updateScheduleForm = new UpdateScheduleForm((Schedule)(((Button)sender).Tag));
+			updateScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			updateScheduleForm.ShowDialog();
+
+			this.RerenderSchedules();
 		}
 
 		private void RerenderSchedules()
@@ -126,46 +147,46 @@ namespace Preschool_Student_Management
 				empty = this.CreateScheduleEmpty(this.flpMonday.Size.Width, this.flpMonday.Size.Height, latestEndedAt, schedule);
 				btn = this.CreateScheduleButton(this.flpMonday.Size.Width, this.flpMonday.Size.Height, schedule);
 
-				switch ((int)schedule.StartedAt.DayOfWeek)
+				switch (schedule.StartedAt.DayOfWeek)
 				{
 					// Monday
-					case 1:
+					case DayOfWeek.Monday:
 						this.flpMonday.Controls.Add(empty);
 						this.flpMonday.Controls.Add(btn);
 						break;
 
 					// Tuesday
-					case 2:
+					case DayOfWeek.Tuesday:
 						this.flpTuesday.Controls.Add(empty);
 						this.flpTuesday.Controls.Add(btn);
 						break;
 
 					// Wednesday
-					case 3:
+					case DayOfWeek.Wednesday:
 						this.flpWednesday.Controls.Add(empty);
 						this.flpWednesday.Controls.Add(btn);
 						break;
 
 					// Thursday
-					case 4:
+					case DayOfWeek.Thursday:
 						this.flpThursday.Controls.Add(empty);
 						this.flpThursday.Controls.Add(btn);
 						break;
 
 					// Friday
-					case 5:
+					case DayOfWeek.Friday:
 						this.flpFriday.Controls.Add(empty);
 						this.flpFriday.Controls.Add(btn);
 						break;
 
 					// Saturday
-					case 6:
+					case DayOfWeek.Saturday:
 						this.flpSaturday.Controls.Add(empty);
 						this.flpSaturday.Controls.Add(btn);
 						break;
 
 					// Sunday
-					case 7:
+					case DayOfWeek.Sunday:
 						this.flpSunday.Controls.Add(empty);
 						this.flpSunday.Controls.Add(btn);
 						break;
@@ -198,6 +219,24 @@ namespace Preschool_Student_Management
 		private void btnPreWeek_Click(object sender, EventArgs e)
 		{
 			this.week -= 1;
+			this.RerenderSchedules();
+		}
+
+		private void thêmLịchHọcToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var createLearningScheduleForm = new CreateLearningScheduleForm(this.schedulableType, this.schedulableId);
+			createLearningScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			createLearningScheduleForm.ShowDialog();
+
+			this.RerenderSchedules();
+		}
+
+		private void thêmLịchKhácToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var createVaccineScheduleForm = new CreateVaccineSchedule(this.schedulableType, this.schedulableId);
+			createVaccineScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			createVaccineScheduleForm.ShowDialog();
+
 			this.RerenderSchedules();
 		}
 	}

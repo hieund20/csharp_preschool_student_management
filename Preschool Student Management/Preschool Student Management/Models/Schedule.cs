@@ -15,6 +15,9 @@ namespace Preschool_Student_Management.Models
 			get { return "schedules"; }
 		}
 
+		readonly public static int LearningType = 1;
+		readonly public static int VacxinType = 2;
+
 		public DateTime StartedAt {
 			get { return DateTime.Parse(this.GetAttribute("started_at")); }
 			set { this.SetAttribute("started_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
@@ -23,6 +26,12 @@ namespace Preschool_Student_Management.Models
 		{
 			get { return DateTime.Parse(this.GetAttribute("ended_at")); }
 			set { this.SetAttribute("ended_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
+		}
+
+		public DateTime CreatedAt
+		{
+			get { return DateTime.Parse(this.GetAttribute("created_at")); }
+			set { this.SetAttribute("created_at", value.ToString("yyyy/MM/dd HH:mm:ss")); }
 		}
 
 		public User User;
@@ -55,6 +64,28 @@ namespace Preschool_Student_Management.Models
 			});
 
 			return this;
+		}
+
+
+		public static Schedule Create(string scheduleType, int scheduleId, string name, string description, DateTime date, DateTime timeFrom, DateTime timeTo)
+		{
+			var schedule = new Schedule();
+
+			schedule.SetAttribute("schedulable_id", scheduleId.ToString());
+			schedule.SetAttribute("schedulable_type", scheduleType);
+			schedule.SetAttribute("name", name);
+			schedule.SetAttribute("description", description);
+			schedule.SetAttribute("type", Schedule.LearningType.ToString());
+			schedule.SetAttribute("user_id", User.CurrentUsser.Key);
+
+			schedule.StartedAt = new DateTime(date.Year, date.Month, date.Day, timeFrom.Hour, timeFrom.Minute, 0);
+			schedule.EndedAt = new DateTime(date.Year, date.Month, date.Day, timeTo.Hour, timeTo.Minute, 0);
+			schedule.CreatedAt = DateTime.Now;
+
+			schedule.Save();
+
+
+			return schedule;
 		}
 	}
 }

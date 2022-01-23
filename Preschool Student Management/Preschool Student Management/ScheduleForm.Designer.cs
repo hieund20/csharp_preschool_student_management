@@ -90,12 +90,14 @@ namespace Preschool_Student_Management
 			this.thêmLịchHọcToolStripMenuItem.Name = "thêmLịchHọcToolStripMenuItem";
 			this.thêmLịchHọcToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
 			this.thêmLịchHọcToolStripMenuItem.Text = "Thêm Lịch học";
+			this.thêmLịchHọcToolStripMenuItem.Click += new System.EventHandler(this.thêmLịchHọcToolStripMenuItem_Click);
 			// 
 			// thêmLịchKhácToolStripMenuItem
 			// 
 			this.thêmLịchKhácToolStripMenuItem.Name = "thêmLịchKhácToolStripMenuItem";
 			this.thêmLịchKhácToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
 			this.thêmLịchKhácToolStripMenuItem.Text = "Thêm Lịch Tiêm";
+			this.thêmLịchKhácToolStripMenuItem.Click += new System.EventHandler(this.thêmLịchKhácToolStripMenuItem_Click);
 			// 
 			// flpSaturday
 			// 
