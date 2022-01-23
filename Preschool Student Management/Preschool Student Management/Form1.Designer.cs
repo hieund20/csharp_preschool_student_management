@@ -109,6 +109,26 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonShowNearEvent = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.listViewClass = new System.Windows.Forms.ListView();
+            this.columnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonAddClass = new System.Windows.Forms.Button();
+            this.buttonEditClass = new System.Windows.Forms.Button();
+            this.buttonDeleteClass = new System.Windows.Forms.Button();
+            this.textBoxClassSearch = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBoxEvent = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBoxShortClassName = new System.Windows.Forms.TextBox();
+            this.textBoxClassName = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label27 = new System.Windows.Forms.Label();
+            this.dateTimePickerClass = new System.Windows.Forms.DateTimePicker();
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -119,6 +139,7 @@
             this.tabClassPage.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // columnHeader5
@@ -637,6 +658,14 @@
             // tabClassPage
             // 
             this.tabClassPage.BackColor = System.Drawing.Color.White;
+            this.tabClassPage.Controls.Add(this.comboBoxEvent);
+            this.tabClassPage.Controls.Add(this.label22);
+            this.tabClassPage.Controls.Add(this.textBoxClassSearch);
+            this.tabClassPage.Controls.Add(this.buttonDeleteClass);
+            this.tabClassPage.Controls.Add(this.buttonEditClass);
+            this.tabClassPage.Controls.Add(this.buttonAddClass);
+            this.tabClassPage.Controls.Add(this.listViewClass);
+            this.tabClassPage.Controls.Add(this.groupBox3);
             this.tabClassPage.Controls.Add(this.label5);
             this.tabClassPage.Location = new System.Drawing.Point(4, 22);
             this.tabClassPage.Name = "tabClassPage";
@@ -984,6 +1013,191 @@
             this.buttonShowNearEvent.UseVisualStyleBackColor = false;
             this.buttonShowNearEvent.Click += new System.EventHandler(this.buttonShowNearEvent_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dateTimePickerClass);
+            this.groupBox3.Controls.Add(this.label27);
+            this.groupBox3.Controls.Add(this.textBoxClassName);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.textBoxShortClassName);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Location = new System.Drawing.Point(26, 86);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(941, 133);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thông tin chi tiết";
+            // 
+            // listViewClass
+            // 
+            this.listViewClass.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader8,
+            this.columnHeader,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12});
+            this.listViewClass.FullRowSelect = true;
+            this.listViewClass.GridLines = true;
+            this.listViewClass.Location = new System.Drawing.Point(26, 276);
+            this.listViewClass.Name = "listViewClass";
+            this.listViewClass.Size = new System.Drawing.Size(941, 203);
+            this.listViewClass.TabIndex = 2;
+            this.listViewClass.UseCompatibleStateImageBehavior = false;
+            this.listViewClass.View = System.Windows.Forms.View.Details;
+            this.listViewClass.SelectedIndexChanged += new System.EventHandler(this.listViewClass_SelectedIndexChanged);
+            // 
+            // columnHeader
+            // 
+            this.columnHeader.Text = "Tên rút gọn";
+            this.columnHeader.Width = 100;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Mã lớp";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Tên lớp";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Ngày tạo";
+            this.columnHeader10.Width = 100;
+            // 
+            // buttonAddClass
+            // 
+            this.buttonAddClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonAddClass.FlatAppearance.BorderSize = 0;
+            this.buttonAddClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddClass.ForeColor = System.Drawing.Color.White;
+            this.buttonAddClass.Location = new System.Drawing.Point(579, 229);
+            this.buttonAddClass.Name = "buttonAddClass";
+            this.buttonAddClass.Size = new System.Drawing.Size(118, 36);
+            this.buttonAddClass.TabIndex = 3;
+            this.buttonAddClass.Text = "Thêm TT lớp học";
+            this.buttonAddClass.UseVisualStyleBackColor = false;
+            this.buttonAddClass.Click += new System.EventHandler(this.buttonAddClass_Click);
+            // 
+            // buttonEditClass
+            // 
+            this.buttonEditClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonEditClass.FlatAppearance.BorderSize = 0;
+            this.buttonEditClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEditClass.ForeColor = System.Drawing.Color.White;
+            this.buttonEditClass.Location = new System.Drawing.Point(714, 229);
+            this.buttonEditClass.Name = "buttonEditClass";
+            this.buttonEditClass.Size = new System.Drawing.Size(118, 36);
+            this.buttonEditClass.TabIndex = 4;
+            this.buttonEditClass.Text = "Sửa TT lớp học";
+            this.buttonEditClass.UseVisualStyleBackColor = false;
+            this.buttonEditClass.Click += new System.EventHandler(this.buttonEditClass_Click);
+            // 
+            // buttonDeleteClass
+            // 
+            this.buttonDeleteClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonDeleteClass.FlatAppearance.BorderSize = 0;
+            this.buttonDeleteClass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeleteClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonDeleteClass.ForeColor = System.Drawing.Color.White;
+            this.buttonDeleteClass.Location = new System.Drawing.Point(849, 229);
+            this.buttonDeleteClass.Name = "buttonDeleteClass";
+            this.buttonDeleteClass.Size = new System.Drawing.Size(118, 36);
+            this.buttonDeleteClass.TabIndex = 5;
+            this.buttonDeleteClass.Text = "Xóa TT lớp học";
+            this.buttonDeleteClass.UseVisualStyleBackColor = false;
+            this.buttonDeleteClass.Click += new System.EventHandler(this.buttonDeleteClass_Click);
+            // 
+            // textBoxClassSearch
+            // 
+            this.textBoxClassSearch.Location = new System.Drawing.Point(179, 238);
+            this.textBoxClassSearch.Name = "textBoxClassSearch";
+            this.textBoxClassSearch.Size = new System.Drawing.Size(216, 20);
+            this.textBoxClassSearch.TabIndex = 6;
+            this.textBoxClassSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(23, 241);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(148, 13);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "Nhập tên rút gọn cần tìm";
+            // 
+            // comboBoxEvent
+            // 
+            this.comboBoxEvent.FormattingEnabled = true;
+            this.comboBoxEvent.Items.AddRange(new object[] {
+            "Lịch gần nhất",
+            "Lịch sắp diễn ra"});
+            this.comboBoxEvent.Location = new System.Drawing.Point(428, 238);
+            this.comboBoxEvent.Name = "comboBoxEvent";
+            this.comboBoxEvent.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxEvent.TabIndex = 8;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(19, 26);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(62, 13);
+            this.label24.TabIndex = 9;
+            this.label24.Text = "Tên rút gọn";
+            // 
+            // textBoxShortClassName
+            // 
+            this.textBoxShortClassName.Location = new System.Drawing.Point(22, 42);
+            this.textBoxShortClassName.Name = "textBoxShortClassName";
+            this.textBoxShortClassName.Size = new System.Drawing.Size(254, 20);
+            this.textBoxShortClassName.TabIndex = 10;
+            // 
+            // textBoxClassName
+            // 
+            this.textBoxClassName.Location = new System.Drawing.Point(344, 42);
+            this.textBoxClassName.Name = "textBoxClassName";
+            this.textBoxClassName.Size = new System.Drawing.Size(254, 20);
+            this.textBoxClassName.TabIndex = 12;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(341, 26);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(64, 13);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "Tên lớp học";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Lịch gần nhất";
+            this.columnHeader11.Width = 100;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Lịch sắp diễn ra";
+            this.columnHeader12.Width = 100;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(659, 26);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(50, 13);
+            this.label27.TabIndex = 15;
+            this.label27.Text = "Ngày tạo";
+            // 
+            // dateTimePickerClass
+            // 
+            this.dateTimePickerClass.Location = new System.Drawing.Point(662, 42);
+            this.dateTimePickerClass.Name = "dateTimePickerClass";
+            this.dateTimePickerClass.Size = new System.Drawing.Size(254, 20);
+            this.dateTimePickerClass.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1015,6 +1229,8 @@
             this.tabUser.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1100,6 +1316,26 @@
         private System.Windows.Forms.TextBox searchtxt;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonShowNearEvent;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListView listViewClass;
+        private System.Windows.Forms.ColumnHeader columnHeader;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Button buttonAddClass;
+        private System.Windows.Forms.Button buttonDeleteClass;
+        private System.Windows.Forms.Button buttonEditClass;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox textBoxClassSearch;
+        private System.Windows.Forms.ComboBox comboBoxEvent;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.TextBox textBoxClassName;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBoxShortClassName;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.DateTimePicker dateTimePickerClass;
     }
 }
 
