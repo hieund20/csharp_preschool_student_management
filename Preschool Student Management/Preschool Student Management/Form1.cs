@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -262,6 +263,27 @@ namespace Preschool_Student_Management
             }
         }
 
+        private void buttonShowNearEvent_Click(object sender, EventArgs e)
+        {
+            if (listViewStudent.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
+                    var scheduleForm = new ScheduleForm(Student.Query.Find(idSelected));
+                    scheduleForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex);
+                }               
+            }
+        }
+
         //USER MANAGEMENT TAB
         //========================//
         private void loadUsertListToListView()
@@ -273,7 +295,9 @@ namespace Preschool_Student_Management
                 newItem.SubItems.Add(user.GetAttribute("name").ToString());
                 newItem.SubItems.Add(user.GetAttribute("username").ToString());              
                 newItem.SubItems.Add(user.GetAttribute("email").ToString());
-                newItem.SubItems.Add(user.GetAttribute("password").ToString());
+
+                
+                newItem.SubItems.Add((user.GetAttribute("password".ToString())));
                 string role = user.GetAttribute("role").ToString();
                 if (role == "1")
                 {
@@ -287,6 +311,7 @@ namespace Preschool_Student_Management
 
             }
         }
+
         private void listViewUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -326,6 +351,7 @@ namespace Preschool_Student_Management
             }
             
         }
+
         private void resetUserTextboxList()
         {
             nametxt.Text = "";
@@ -336,6 +362,7 @@ namespace Preschool_Student_Management
             passtxt.Text = "";
             emailtxt.Text = "";
         }
+
         private void addUserbtn_Click(object sender, EventArgs e)
         {
             if (nametxt.Text == "" ||
@@ -355,7 +382,7 @@ namespace Preschool_Student_Management
                 user.SetAttribute("name", nametxt.Text);
                 user.SetAttribute("username", usernametxt.Text);
                 user.SetAttribute("email", emailtxt.Text);
-                user.SetAttribute("password", passtxt.Text);
+                user.SetAttribute("password", hasspass(passtxt.Text));
                 if (radioButton1.Checked == true)
                 {
                     user.SetAttribute("role", "1");
@@ -365,20 +392,11 @@ namespace Preschool_Student_Management
                 user.SetAttribute("created_at", createdtime.Value.ToString("yyyy-MM-dd  HH:mm:ss"));
                 user.Save();
                 // load listview
-                listView1.SelectedItems[0].SubItems[1].Text = nametxt.Text;
-                listView1.SelectedItems[0].SubItems[2].Text = usernametxt.Text;
-                listView1.SelectedItems[0].SubItems[3].Text = emailtxt.Text;
-                listView1.SelectedItems[0].SubItems[4].Text = passtxt.Text;
-                if (radioButton1.Checked == true)
-                {
-                    listView1.SelectedItems[0].SubItems[5].Text = "admin";
-                }
-                else if (radioButton2.Checked == true)
-                { listView1.SelectedItems[0].SubItems[5].Text = "Giáo viên"; }                            
-                listView1.SelectedItems[0].SubItems[6].Text = createdtime.Value.ToShortDateString();
+                updateUserList();
                 resetUserTextboxList();
             }
         }
+
         private void editUserbtn_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count > 0)
@@ -387,25 +405,19 @@ namespace Preschool_Student_Management
                 {
                     string idSelected = listView1.SelectedItems[0].SubItems[0].Text;
                     User user = User.Query.Where("id", "=", idSelected).First();
-
-                    //Update on UI
-                    listView1.SelectedItems[0].SubItems[1].Text = nametxt.Text;
-                    listView1.SelectedItems[0].SubItems[2].Text = usernametxt.Text;
-                    listView1.SelectedItems[0].SubItems[3].Text = emailtxt.Text;
-                    listView1.SelectedItems[0].SubItems[4].Text = passtxt.Text;
-                    if (radioButton1.Checked == true)
-                    {
-                        listView1.SelectedItems[0].SubItems[5].Text = "admin";
-                    }
-                    else if (radioButton2.Checked == true)
-                    { listView1.SelectedItems[0].SubItems[5].Text = "Giáo viên"; }
-                    listView1.SelectedItems[0].SubItems[6].Text = createdtime.Value.ToShortDateString();
-
                     //Update under database
                     user.SetAttribute("name", nametxt.Text);
                     user.SetAttribute("username", usernametxt.Text);
                     user.SetAttribute("email",emailtxt.Text);
-                    user.SetAttribute("password", passtxt.Text);
+                    if(user.GetAttribute("password").CompareTo(passtxt.Text) == 0)
+                    {
+                        user.SetAttribute("password", passtxt.Text);
+                    }
+                    else
+                    {
+                        user.SetAttribute("password", hasspass(passtxt.Text));
+                    }
+                    
                     if (radioButton1.Checked == true)
                     {
                         user.SetAttribute("role", "1");
@@ -414,6 +426,8 @@ namespace Preschool_Student_Management
                     { user.SetAttribute("role", "2"); }
                     user.SetAttribute("created_at", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     user.Save();
+                    resetUserTextboxList();
+                    updateUserList();
                 }
                 catch (Exception ex)
                 {
@@ -442,6 +456,9 @@ namespace Preschool_Student_Management
                  
                     resetUserTextboxList();
                     updateUserList();
+                    addUserbtn.Enabled = true;
+                    editUserbtn.Enabled = false;
+                    removeUserbtn.Enabled = false;
                 }
                 else
                 {
@@ -489,6 +506,7 @@ namespace Preschool_Student_Management
         }
             
         }
+
         private void updateUserList()
         {
             listView1.Items.Clear();
@@ -499,7 +517,22 @@ namespace Preschool_Student_Management
         {
             updateUserList();
         }
+
+        private string hasspass(string a)
+        {
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(a);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+
+            string hasPass = "";
+
+            foreach (byte item in hasData)
+            {
+                hasPass += item;
+            }
+            return hasPass;
+        }
         // ---------------------------------------------------
+
         private void Form1_Load(object sender, EventArgs e)
         {
             hideTabHeader();
@@ -507,6 +540,7 @@ namespace Preschool_Student_Management
             loadUsertListToListView();
         }
 
+       
     }
 
 }

@@ -108,6 +108,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonShowNearEvent = new System.Windows.Forms.Button();
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -299,6 +300,7 @@
             // tabStudentPage
             // 
             this.tabStudentPage.BackColor = System.Drawing.Color.White;
+            this.tabStudentPage.Controls.Add(this.buttonShowNearEvent);
             this.tabStudentPage.Controls.Add(this.label16);
             this.tabStudentPage.Controls.Add(this.textBoxSearch);
             this.tabStudentPage.Controls.Add(this.buttonDeleteStudent);
@@ -339,6 +341,7 @@
             this.buttonDeleteStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeleteStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonDeleteStudent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonDeleteStudent.FlatAppearance.BorderSize = 0;
             this.buttonDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeleteStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -356,6 +359,7 @@
             this.buttonAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonAddStudent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonAddStudent.FlatAppearance.BorderSize = 0;
             this.buttonAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAddStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -536,6 +540,7 @@
             this.buttonEditStudent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonEditStudent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonEditStudent.FlatAppearance.BorderSize = 0;
             this.buttonEditStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonEditStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -961,6 +966,24 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
             // 
+            // buttonShowNearEvent
+            // 
+            this.buttonShowNearEvent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonShowNearEvent.BackColor = System.Drawing.Color.White;
+            this.buttonShowNearEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonShowNearEvent.FlatAppearance.BorderSize = 0;
+            this.buttonShowNearEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowNearEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonShowNearEvent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonShowNearEvent.Location = new System.Drawing.Point(471, 229);
+            this.buttonShowNearEvent.Name = "buttonShowNearEvent";
+            this.buttonShowNearEvent.Size = new System.Drawing.Size(93, 36);
+            this.buttonShowNearEvent.TabIndex = 8;
+            this.buttonShowNearEvent.Text = "Lịch gần nhất";
+            this.buttonShowNearEvent.UseVisualStyleBackColor = false;
+            this.buttonShowNearEvent.Click += new System.EventHandler(this.buttonShowNearEvent_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1076,6 +1099,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox searchtxt;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonShowNearEvent;
     }
 }
 
