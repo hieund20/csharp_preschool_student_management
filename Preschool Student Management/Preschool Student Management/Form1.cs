@@ -263,6 +263,27 @@ namespace Preschool_Student_Management
             }
         }
 
+        private void buttonShowNearEvent_Click(object sender, EventArgs e)
+        {
+            if (listViewStudent.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    string idSelected = listViewStudent.SelectedItems[0].SubItems[0].Text;
+                    var scheduleForm = new ScheduleForm(Student.Query.Find(idSelected));
+                    scheduleForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex);
+                }               
+            }
+        }
+
         //USER MANAGEMENT TAB
         //========================//
         private void loadUsertListToListView()
@@ -496,6 +517,7 @@ namespace Preschool_Student_Management
         {
             updateUserList();
         }
+
         private string hasspass(string a)
         {
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(a);
@@ -517,6 +539,8 @@ namespace Preschool_Student_Management
             loadStudentListToListView();
             loadUsertListToListView();
         }
+
+       
     }
 
 }
