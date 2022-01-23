@@ -37,11 +37,6 @@ namespace Preschool_Student_Management
 			}
 		}
 
-		public ScheduleForm()
-		{
-			InitializeComponent();
-		}
-
 		public ScheduleForm(Classroom classroom)
 		{
 			this.classroom = classroom;
