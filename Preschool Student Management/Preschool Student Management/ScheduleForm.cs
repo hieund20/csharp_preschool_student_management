@@ -102,8 +102,19 @@ namespace Preschool_Student_Management
 			btn.Text = schedule.GetAttribute("name") + "\n" + schedule.StartedAt.ToString("hh:mm") + " - " + schedule.EndedAt.ToString("hh:mm");
 			btn.Size = new Size(parentWidth, (int)((period.TotalHours / this.hourPeriod) * parentHeight));
 			btn.Margin = new Padding(0);
+			btn.Tag = schedule;
+			btn.Click += Btn_Click;
 
 			return btn;
+		}
+
+		private void Btn_Click(object sender, EventArgs e)
+		{
+			var updateScheduleForm = new UpdateScheduleForm((Schedule)(((Button)sender).Tag));
+			updateScheduleForm.StartPosition = FormStartPosition.CenterParent;
+			updateScheduleForm.ShowDialog();
+
+			this.RerenderSchedules();
 		}
 
 		private void RerenderSchedules()

@@ -84,6 +84,12 @@
     <Compile Include="ScheduleForm.Designer.cs">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateScheduleForm.Designer.cs">
+      <DependentUpon>UpdateScheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="CreateLearningScheduleForm.resx">
       <DependentUpon>CreateLearningScheduleForm.cs</DependentUpon>
@@ -107,6 +113,9 @@
     </Compile>
     <EmbeddedResource Include="ScheduleForm.resx">
       <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateScheduleForm.resx">
+      <DependentUpon>UpdateScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\Preschool Student Management.exe.config" />
     <None Include="bin\Debug\Preschool Student Management.vshost.exe.config" />
