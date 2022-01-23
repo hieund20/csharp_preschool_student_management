@@ -104,6 +104,12 @@ namespace Preschool_Student_Management.Models
 					.OrderBy("started_at")
 					.Get();
 
+                //MessageBox.Show(Schedule.Query.Where("schedulable_type", "=", this.TableName)
+                //    .WhereIn("schedulable_id", keys)
+                //    .Where("started_at", ">=", from.ToString("yyyy/MM/dd HH:mm:ss"))
+                //    .Where("started_at", "<=", to.ToString("yyyy/MM/dd HH:mm:ss"))
+                //    .OrderBy("started_at").ToSql());
+
 				foreach (var classroom in classrooms)
 				{
 					classroom.Schedules = new List<Schedule>();

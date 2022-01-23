@@ -241,24 +241,30 @@ namespace Preschool_Student_Management
             {
                 string searchQuery = textBoxSearch.Text;
 
-                //Only can search by firs name, need to search full name
-                //Only search 1 time, when search another name and return search it won't show 
-                var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("first_name", "=", searchQuery);
-                List<Student> studentListResult = studentQueryBuilder.Get();
-                listViewStudent.Items.Clear();
-                foreach (var student in studentListResult)
+                if (searchQuery != "")
                 {
-                    ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("first_name").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("last_name").ToString());
-                    string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
-                    newItem.SubItems.Add(birthDateFormat);
-                    newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
-                    newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                    var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("first_name", "=", searchQuery);
+                    List<Student> studentListResult = studentQueryBuilder.Get();
+                    listViewStudent.Items.Clear();
+                    foreach (var student in studentListResult)
+                    {
+                        ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("first_name").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("last_name").ToString());
+                        string birthDateFormat = DateTime.Parse(student.GetAttribute("birth_date")).ToString("yyyy-MM-dd");
+                        newItem.SubItems.Add(birthDateFormat);
+                        newItem.SubItems.Add(student.GetAttribute("classroom_id").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("parent_first_name").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
+                        newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                    }
                 }
+                else
+                {
+                    listViewStudent.Items.Clear();
+                    loadStudentListToListView();
+                }             
                 textBoxSearch.Text = "";
             }
         }
@@ -284,8 +290,8 @@ namespace Preschool_Student_Management
             }
         }
 
-        //USER MANAGEMENT TAB
         //========================//
+        //USER MANAGEMENT TAB
         private void loadUsertListToListView()
         {
             var userList = User.Query.Get();
@@ -533,14 +539,202 @@ namespace Preschool_Student_Management
         }
         // ---------------------------------------------------
 
+        //CLASS MANAGEMENT TAB
+        private void resetClassTextboxList()
+        {
+            textBoxShortClassName.Text = "";
+            textBoxClassName.Text = "";
+            dateTimePickerClass.Value = DateTime.Now;
+        }
+
+        private void loadClassListToListView()
+        {
+            try
+            {
+                var classQueryBuilder = Classroom.Query.WithClosestScheduel();
+                List<Classroom> classListResult = classQueryBuilder.Get();
+
+                foreach (var singleClass in classListResult)
+                {
+                    ListViewItem newItem = listViewClass.Items.Add(singleClass.GetAttribute("id").ToString());
+                    newItem.SubItems.Add(singleClass.GetAttribute("code").ToString());
+                    newItem.SubItems.Add(singleClass.GetAttribute("name").ToString());
+                    string createdDateFormat = DateTime.Parse(singleClass.GetAttribute("created_at")).ToString("yyyy-MM-dd");
+                    newItem.SubItems.Add(createdDateFormat);
+                    newItem.SubItems.Add(singleClass.Schedules.Count().ToString());
+                    //foreach (var schedule in singleClass.Schedules)
+                    //{
+                    //    newItem.SubItems.Add(schedule.ToString());
+                    //}    
+
+                    //List<Schedule> scheduleList = singleClass.Schedules;
+                    //foreach(var schedule in scheduleList)
+                    //{
+                    //    MessageBox.Show(schedule.ToString());
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex);
+            }          
+        }
+
+        private void buttonAddClass_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBoxShortClassName.Text == "" ||
+                    textBoxClassName.Text == "")
+                {
+                    MessageBox.Show("Bạn phải nhập đủ các trường dữ liệu !", "Thông báo");
+                }
+                else
+                {
+                    int newId = int.Parse(Classroom.Query.OrderBy("id", "DESC").First().GetAttribute("id"));
+                    newId++;
+                    //Update on UI
+                    ListViewItem newItem = listViewClass.Items.Add(newId.ToString());
+                    newItem.SubItems.Add(textBoxShortClassName.Text);
+                    newItem.SubItems.Add(textBoxClassName.Text);
+                    newItem.SubItems.Add(dateTimePickerClass.Value.ToShortDateString());
+
+                    //Update under database
+                    var classroom = new Classroom();
+                    classroom.SetAttribute("code", textBoxShortClassName.Text);
+                    classroom.SetAttribute("name", textBoxClassName.Text);
+                    classroom.SetAttribute("created_at", dateTimePickerDOB.Value.ToString("yyyy-MM-dd"));
+                    classroom.SetAttribute("user_id", "1");
+                    classroom.Save();
+
+                    resetClassTextboxList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error " + ex);
+            }
+        }
+
+        private void listViewClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewClass.SelectedItems.Count <= 0)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    textBoxShortClassName.Text = listViewClass.SelectedItems[0].SubItems[1].Text;
+                    textBoxClassName.Text = listViewClass.SelectedItems[0].SubItems[2].Text;
+                    dateTimePickerClass.Text = listViewClass.SelectedItems[0].SubItems[3].Text;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
+            }
+        }
+
+        private void buttonEditClass_Click(object sender, EventArgs e)
+        {
+            if (listViewClass.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    string idSelected = listViewClass.SelectedItems[0].SubItems[0].Text;
+                    Classroom classSelected = Classroom.Query.Where("id", "=", idSelected).First();
+
+                    //Update on UI
+                    listViewClass.SelectedItems[0].SubItems[1].Text = textBoxShortClassName.Text;
+                    listViewClass.SelectedItems[0].SubItems[2].Text = textBoxClassName.Text;
+                    listViewClass.SelectedItems[0].SubItems[3].Text = dateTimePickerClass.Value.ToShortDateString();
+
+                    //Update under database
+                    classSelected.SetAttribute("code", textBoxShortClassName.Text);
+                    classSelected.SetAttribute("name", textBoxClassName.Text);
+                    classSelected.SetAttribute("created_at", dateTimePickerClass.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+                    classSelected.SetAttribute("user_id", "1");
+                    classSelected.Save();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn phải chọn 1 dòng để sửa !", "Thông báo");
+            }
+        }
+
+        private void buttonDeleteClass_Click(object sender, EventArgs e)
+        {
+            if (listViewClass.SelectedItems.Count > 0)
+            {
+                var confirmDialog = MessageBox.Show(
+                "Bạn có chắc muốn xóa dòng này?",
+                "Xác nhận xóa thông tin",
+                MessageBoxButtons.YesNo);
+                if (confirmDialog == DialogResult.Yes)
+                {
+                    //Update under database
+                    string idSelected = listViewClass.SelectedItems[0].SubItems[0].Text;
+                    Classroom classSelected = Classroom.Query.Where("id", "=", idSelected).First();
+                    classSelected.Delete();
+
+                    //Update on UI
+                    listViewClass.Items.Remove(listViewClass.SelectedItems[0]);
+                    resetClassTextboxList();
+                }
+                else
+                {
+                    //Do not handle code
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn phải chọn 1 dòng để xóa !", "Thông báo");
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                
+                string searchQuery = textBoxClassSearch.Text;
+                if(searchQuery != "")
+                {
+                    var classQueryBuilder = Classroom.Query.Where("code", "=", searchQuery);
+                    List<Classroom> classListResult = classQueryBuilder.Get();
+                    listViewClass.Items.Clear();
+                    foreach (var singleClass in classListResult)
+                    {
+                        ListViewItem newItem = listViewClass.Items.Add(singleClass.GetAttribute("id").ToString());
+                        newItem.SubItems.Add(singleClass.GetAttribute("code").ToString());
+                        newItem.SubItems.Add(singleClass.GetAttribute("name").ToString());
+                        string createdDateFormat = DateTime.Parse(singleClass.GetAttribute("created_at")).ToString("yyyy-MM-dd");
+                        newItem.SubItems.Add(createdDateFormat);
+                    }
+                }
+                else
+                {
+                    listViewClass.Items.Clear();
+                    loadClassListToListView();
+                }
+                textBoxClassSearch.Text = "";
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             hideTabHeader();
             loadStudentListToListView();
             loadUsertListToListView();
-        }
-
-       
+            loadClassListToListView();
+        }     
     }
 
 }
