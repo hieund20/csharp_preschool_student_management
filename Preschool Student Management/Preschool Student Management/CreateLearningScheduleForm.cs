@@ -32,7 +32,7 @@ namespace Preschool_Student_Management
 			schedule.SetAttribute("name", name);
 			schedule.SetAttribute("description", description);
 			schedule.SetAttribute("type", Schedule.LearningType.ToString());
-			schedule.SetAttribute("user_id", User.Query.First().Key);
+			schedule.SetAttribute("user_id", User.CurrentUsser.Key);
 
 			schedule.StartedAt = new DateTime(date.Year, date.Month, date.Day, timeFrom.Hour, timeFrom.Minute, 0);
 			schedule.EndedAt= new DateTime(date.Year, date.Month, date.Day, timeTo.Hour, timeTo.Minute, 0);
