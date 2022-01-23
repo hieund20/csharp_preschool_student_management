@@ -71,6 +71,8 @@ namespace Preschool_Student_Management
 
 			var deletedSchedules = Schedule.Query
 				.Where("name", "=", this.schedule.GetAttribute("name"))
+				.Where("schedulable_id", "=", this.schedule.GetAttribute("schedulable_id"))
+				.Where("schedulable_type", "=", this.schedule.GetAttribute("schedulable_type"))
 				.Where("description", "=", this.schedule.GetAttribute("description"))
 				.Where("started_at", ">=", this.schedule.StartedAt.ToString("yyyy/MM/dd HH:mm:ss"))
 				.Get();
