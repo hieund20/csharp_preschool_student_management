@@ -303,6 +303,7 @@ namespace Preschool_Student_Management
         }
 
         //========================//
+
         //USER MANAGEMENT TAB
         private void loadUsertListToListView()
         {
@@ -549,7 +550,7 @@ namespace Preschool_Student_Management
             }
             return hasPass;
         }
-        // ---------------------------------------------------
+        //========================//
 
         //CLASS MANAGEMENT TAB
         private void resetClassTextboxList()
@@ -761,8 +762,8 @@ namespace Preschool_Student_Management
                 }
             }
         }
-      
-        // ---------------------------------------------------
+
+        //========================//
 
         private void Form1_Load(object sender, EventArgs e)
         {
