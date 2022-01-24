@@ -63,7 +63,7 @@ namespace Preschool_Student_Management
         //STUDENT MANAGEMENT TAB
         private void loadStudentListToListView()
         {
-            var studentList = Student.Query.Get();
+            var studentList = Student.Query.WithClosestScheduel().Get();
             foreach (var student in studentList)
             {
                 ListViewItem newItem = listViewStudent.Items.Add(student.GetAttribute("id").ToString());
@@ -76,6 +76,18 @@ namespace Preschool_Student_Management
                 newItem.SubItems.Add(student.GetAttribute("parent_last_name").ToString());
                 newItem.SubItems.Add(student.GetAttribute("parent_phone_number").ToString());
                 newItem.SubItems.Add(student.GetAttribute("address").ToString());
+                if (student.ClosestScheduel == null)
+                {
+                    newItem.SubItems.Add("Không có sự kiện nào sắp diễn ra");
+                    newItem.SubItems.Add("Chưa xác định");
+                    newItem.SubItems.Add("Chưa xác định");
+                }
+                else
+                {
+                    newItem.SubItems.Add(student.ClosestScheduel.GetAttribute("name"));
+                    newItem.SubItems.Add(student.ClosestScheduel.StartedAt.ToString());
+                    newItem.SubItems.Add(student.ClosestScheduel.EndedAt.ToString());
+                }
             }
         }
 
@@ -561,17 +573,18 @@ namespace Preschool_Student_Management
                     newItem.SubItems.Add(singleClass.GetAttribute("name").ToString());
                     string createdDateFormat = DateTime.Parse(singleClass.GetAttribute("created_at")).ToString("yyyy-MM-dd");
                     newItem.SubItems.Add(createdDateFormat);
-                    newItem.SubItems.Add(singleClass.Schedules.Count().ToString());
-                    //foreach (var schedule in singleClass.Schedules)
-                    //{
-                    //    newItem.SubItems.Add(schedule.ToString());
-                    //}    
-
-                    //List<Schedule> scheduleList = singleClass.Schedules;
-                    //foreach(var schedule in scheduleList)
-                    //{
-                    //    MessageBox.Show(schedule.ToString());
-                    //}
+                    if (singleClass.ClosestScheduel == null)
+                    {
+                        newItem.SubItems.Add("Không có sự kiện nào sắp diễn ra");
+                        newItem.SubItems.Add("Chưa xác định");
+                        newItem.SubItems.Add("Chưa xác định");
+                    }
+                    else
+                    {
+                        newItem.SubItems.Add(singleClass.ClosestScheduel.GetAttribute("name"));
+                        newItem.SubItems.Add(singleClass.ClosestScheduel.StartedAt.ToString());
+                        newItem.SubItems.Add(singleClass.ClosestScheduel.EndedAt.ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -748,6 +761,7 @@ namespace Preschool_Student_Management
                 }
             }
         }
+      
         // ---------------------------------------------------
 
         private void Form1_Load(object sender, EventArgs e)
