@@ -77,6 +77,9 @@
             this.columnParentLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPhoneNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.tabClassPage = new System.Windows.Forms.TabPage();
             this.buttonShowClassEvent = new System.Windows.Forms.Button();
@@ -91,6 +94,8 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dateTimePickerClass = new System.Windows.Forms.DateTimePicker();
             this.label27 = new System.Windows.Forms.Label();
@@ -128,11 +133,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -670,6 +670,21 @@
             this.columnHeaderAddress.Text = "Địa chỉ";
             this.columnHeaderAddress.Width = 150;
             // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Lịch sắp diễn ra";
+            this.columnHeader13.Width = 250;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Thời gian diễn ra";
+            this.columnHeader14.Width = 200;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Thời gian kết thúc";
+            this.columnHeader15.Width = 200;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -821,6 +836,16 @@
             this.columnHeader11.Text = "Lịch gần nhất";
             this.columnHeader11.Width = 250;
             // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Thời gian diễn ra";
+            this.columnHeader12.Width = 200;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Thời gian kết thúc";
+            this.columnHeader16.Width = 200;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dateTimePickerClass);
@@ -959,11 +984,11 @@
             this.removeUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeUserbtn.ForeColor = System.Drawing.Color.White;
-            this.removeUserbtn.Location = new System.Drawing.Point(823, 229);
+            this.removeUserbtn.Location = new System.Drawing.Point(839, 229);
             this.removeUserbtn.Name = "removeUserbtn";
-            this.removeUserbtn.Size = new System.Drawing.Size(118, 36);
+            this.removeUserbtn.Size = new System.Drawing.Size(128, 36);
             this.removeUserbtn.TabIndex = 10;
-            this.removeUserbtn.Text = "Xóa TT User";
+            this.removeUserbtn.Text = "Xóa TT người dùng";
             this.removeUserbtn.UseVisualStyleBackColor = false;
             this.removeUserbtn.Click += new System.EventHandler(this.removeUserbtn_Click);
             // 
@@ -976,11 +1001,11 @@
             this.addUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addUserbtn.ForeColor = System.Drawing.Color.White;
-            this.addUserbtn.Location = new System.Drawing.Point(553, 229);
+            this.addUserbtn.Location = new System.Drawing.Point(542, 229);
             this.addUserbtn.Name = "addUserbtn";
-            this.addUserbtn.Size = new System.Drawing.Size(118, 36);
+            this.addUserbtn.Size = new System.Drawing.Size(146, 36);
             this.addUserbtn.TabIndex = 8;
-            this.addUserbtn.Text = "Thêm TT User";
+            this.addUserbtn.Text = "Thêm TT người dùng";
             this.addUserbtn.UseVisualStyleBackColor = false;
             this.addUserbtn.Click += new System.EventHandler(this.addUserbtn_Click);
             // 
@@ -993,11 +1018,11 @@
             this.editUserbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editUserbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editUserbtn.ForeColor = System.Drawing.Color.White;
-            this.editUserbtn.Location = new System.Drawing.Point(688, 229);
+            this.editUserbtn.Location = new System.Drawing.Point(694, 229);
             this.editUserbtn.Name = "editUserbtn";
-            this.editUserbtn.Size = new System.Drawing.Size(118, 36);
+            this.editUserbtn.Size = new System.Drawing.Size(138, 36);
             this.editUserbtn.TabIndex = 9;
-            this.editUserbtn.Text = "Sửa TT User";
+            this.editUserbtn.Text = "Sửa TT người dùng";
             this.editUserbtn.UseVisualStyleBackColor = false;
             this.editUserbtn.Click += new System.EventHandler(this.editUserbtn_Click);
             // 
@@ -1204,31 +1229,6 @@
             this.label3.Size = new System.Drawing.Size(288, 18);
             this.label3.TabIndex = 0;
             this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Thời gian diễn ra";
-            this.columnHeader12.Width = 200;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Lịch sắp diễn ra";
-            this.columnHeader13.Width = 250;
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Thời gian diễn ra";
-            this.columnHeader14.Width = 200;
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Thời gian kết thúc";
-            this.columnHeader15.Width = 200;
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "Thời gian kết thúc";
-            this.columnHeader16.Width = 200;
             // 
             // Form1
             // 
