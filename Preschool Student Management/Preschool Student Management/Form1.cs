@@ -255,7 +255,7 @@ namespace Preschool_Student_Management
 
                 if (searchQuery != "")
                 {
-                    var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("first_name", "=", searchQuery);
+                    var studentQueryBuilder = Student.Query.WithUser().WithClassroom().Where("last_name", "=", searchQuery);
                     List<Student> studentListResult = studentQueryBuilder.Get();
                     listViewStudent.Items.Clear();
                     foreach (var student in studentListResult)
@@ -388,8 +388,8 @@ namespace Preschool_Student_Management
             usernametxt.Text == "" ||
             emailtxt.Text == "" ||
             passtxt.Text == "" ||
-            radioButton1.Checked == true ||
-            radioButton1.Checked == true)
+            (radioButton1.Checked == false && radioButton2.Checked == false)       
+            )
             {
                 MessageBox.Show("Bạn phải nhập đủ các trường dữ liệu !", "Thông báo");
             }
