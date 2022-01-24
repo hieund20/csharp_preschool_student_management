@@ -79,6 +79,7 @@
             this.columnHeaderAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.tabClassPage = new System.Windows.Forms.TabPage();
+            this.buttonShowClassEvent = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.textBoxClassSearch = new System.Windows.Forms.TextBox();
             this.buttonDeleteClass = new System.Windows.Forms.Button();
@@ -89,6 +90,7 @@
             this.columnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dateTimePickerClass = new System.Windows.Forms.DateTimePicker();
             this.label27 = new System.Windows.Forms.Label();
@@ -126,7 +128,11 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonShowClassEvent = new System.Windows.Forms.Button();
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -604,7 +610,10 @@
             this.columnParentFirstName,
             this.columnParentLastName,
             this.columnHeaderPhoneNumber,
-            this.columnHeaderAddress});
+            this.columnHeaderAddress,
+            this.columnHeader13,
+            this.columnHeader14,
+            this.columnHeader15});
             this.listViewStudent.FullRowSelect = true;
             this.listViewStudent.GridLines = true;
             this.listViewStudent.HideSelection = false;
@@ -659,7 +668,7 @@
             // columnHeaderAddress
             // 
             this.columnHeaderAddress.Text = "Địa chỉ";
-            this.columnHeaderAddress.Width = 220;
+            this.columnHeaderAddress.Width = 150;
             // 
             // label2
             // 
@@ -689,6 +698,21 @@
             this.tabClassPage.Size = new System.Drawing.Size(987, 548);
             this.tabClassPage.TabIndex = 3;
             this.tabClassPage.Text = "tabPage4";
+            // 
+            // buttonShowClassEvent
+            // 
+            this.buttonShowClassEvent.BackColor = System.Drawing.Color.White;
+            this.buttonShowClassEvent.FlatAppearance.BorderSize = 0;
+            this.buttonShowClassEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowClassEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonShowClassEvent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
+            this.buttonShowClassEvent.Location = new System.Drawing.Point(444, 229);
+            this.buttonShowClassEvent.Name = "buttonShowClassEvent";
+            this.buttonShowClassEvent.Size = new System.Drawing.Size(118, 36);
+            this.buttonShowClassEvent.TabIndex = 8;
+            this.buttonShowClassEvent.Text = "Hiển thị lịch";
+            this.buttonShowClassEvent.UseVisualStyleBackColor = false;
+            this.buttonShowClassEvent.Click += new System.EventHandler(this.buttonShowClassEvent_Click);
             // 
             // label22
             // 
@@ -759,7 +783,10 @@
             this.columnHeader8,
             this.columnHeader,
             this.columnHeader9,
-            this.columnHeader10});
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader16});
             this.listViewClass.FullRowSelect = true;
             this.listViewClass.GridLines = true;
             this.listViewClass.Location = new System.Drawing.Point(26, 276);
@@ -788,6 +815,11 @@
             // 
             this.columnHeader10.Text = "Ngày tạo";
             this.columnHeader10.Width = 150;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Lịch gần nhất";
+            this.columnHeader11.Width = 250;
             // 
             // groupBox3
             // 
@@ -1173,20 +1205,30 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "QUẢN LÝ THÔNG TIN NGƯỜI DÙNG";
             // 
-            // buttonShowClassEvent
+            // columnHeader12
             // 
-            this.buttonShowClassEvent.BackColor = System.Drawing.Color.White;
-            this.buttonShowClassEvent.FlatAppearance.BorderSize = 0;
-            this.buttonShowClassEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonShowClassEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonShowClassEvent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(85)))), ((int)(((byte)(159)))));
-            this.buttonShowClassEvent.Location = new System.Drawing.Point(444, 229);
-            this.buttonShowClassEvent.Name = "buttonShowClassEvent";
-            this.buttonShowClassEvent.Size = new System.Drawing.Size(118, 36);
-            this.buttonShowClassEvent.TabIndex = 8;
-            this.buttonShowClassEvent.Text = "Hiển thị lịch";
-            this.buttonShowClassEvent.UseVisualStyleBackColor = false;
-            this.buttonShowClassEvent.Click += new System.EventHandler(this.buttonShowClassEvent_Click);
+            this.columnHeader12.Text = "Thời gian diễn ra";
+            this.columnHeader12.Width = 200;
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Lịch sắp diễn ra";
+            this.columnHeader13.Width = 250;
+            // 
+            // columnHeader14
+            // 
+            this.columnHeader14.Text = "Thời gian diễn ra";
+            this.columnHeader14.Width = 200;
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Thời gian kết thúc";
+            this.columnHeader15.Width = 200;
+            // 
+            // columnHeader16
+            // 
+            this.columnHeader16.Text = "Thời gian kết thúc";
+            this.columnHeader16.Width = 200;
             // 
             // Form1
             // 
@@ -1324,6 +1366,12 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.DateTimePicker dateTimePickerClass;
         private System.Windows.Forms.Button buttonShowClassEvent;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
+        private System.Windows.Forms.ColumnHeader columnHeader16;
     }
 }
 
