@@ -29,7 +29,7 @@ namespace Preschool_Student_Management
                 if (mail == null) { MessageBox.Show("Email chưa được đăng kí!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
                 else
                 {
-                    MessageBox.Show( "Mật khẩu của bạn là: " + mail.GetAttribute("password"),  "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
+                    MessageBox.Show( "Mật khẩu của bạn là: " + Utils.Decrypt(mail.GetAttribute("password")),  "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); ;
                     this.Hide();
                     Login login = new Login();
                     login.ShowDialog();

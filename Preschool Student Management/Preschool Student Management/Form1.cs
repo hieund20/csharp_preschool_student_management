@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Preschool_Student_Management.Models;
 
-
 namespace Preschool_Student_Management
 {
     public partial class Form1 : Form
@@ -394,14 +393,13 @@ namespace Preschool_Student_Management
                 MessageBox.Show("Bạn phải nhập đủ các trường dữ liệu !", "Thông báo");
             }
             else
-            {
-               
+            {              
                 //Update under database
                 var user = new User();
                 user.SetAttribute("name", nametxt.Text);
                 user.SetAttribute("username", usernametxt.Text);
                 user.SetAttribute("email", emailtxt.Text);
-                user.SetAttribute("password", hasspass(passtxt.Text));
+                user.SetAttribute("password", Utils.Crypt(passtxt.Text));
                 if (radioButton1.Checked == true)
                 {
                     user.SetAttribute("role", "1");

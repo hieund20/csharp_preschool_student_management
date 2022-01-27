@@ -58,9 +58,9 @@ namespace Preschool_Student_Management
             else
             {
                 var user = User.Query.Where("username", "=", tentk).First();
-                var pass = User.Query.Where("password", "=", mk).First();
+                var pass = User.Query.Where("password", "=", Utils.Crypt(mk)).First();
                 if (user==null || pass==null) { MessageBox.Show("Tên tài khoản hoặc mật khẩu không chính xác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-                else if(user.GetAttribute("password") == mk) {
+                else if(user.GetAttribute("password") == Utils.Crypt(mk)) {
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     User.CurrentUsser = user;
                     this.Hide();
